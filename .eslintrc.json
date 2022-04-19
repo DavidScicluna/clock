@@ -1,0 +1,101 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			}
+		},
+		"react": {
+			"version": "detect"
+		}
+	},
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es6": true,
+		"jest": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript",
+		"plugin:react/recommended",
+		"plugin:jsx-a11y/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"rules": {
+		"jsx-a11y/href-no-hash": ["off"],
+		"react/react-in-jsx-scope": "off",
+		"react/prop-types": "off",
+		"react-hooks/exhaustive-deps": "off",
+		"no-mixed-spaces-and-tabs": 0,
+		"max-len": [
+			"warn",
+			{
+				"code": 120,
+				"tabWidth": 2,
+				"comments": 120,
+				"ignoreComments": false,
+				"ignoreTrailingComments": true,
+				"ignoreUrls": true,
+				"ignoreStrings": true,
+				"ignoreTemplateLiterals": true,
+				"ignoreRegExpLiterals": true
+			}
+		],
+		"jsx-a11y/anchor-is-valid": [
+			"error",
+			{
+				"components": ["Link"],
+				"specialLink": ["hrefLeft", "hrefRight"],
+				"aspects": ["invalidHref", "preferButton"]
+			}
+		],
+		"import/order": [
+			"error",
+			{
+				"groups": ["builtin", "external", "internal", "sibling", "parent", "index"],
+				"pathGroups": [
+					{
+						"pattern": "react",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "react-router-dom/**",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "react*/**",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"pattern": "@chakra-ui*/**",
+						"group": "external",
+						"position": "before"
+					}
+				],
+				"pathGroupsExcludedImportTypes": ["react", "react-router-dom/**", "react*/**", "@chakra-ui*/**"],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": true
+				}
+			}
+		]
+	}
+}
