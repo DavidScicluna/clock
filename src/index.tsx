@@ -1,3 +1,9 @@
-import ReactDOM from 'react-dom';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(<h1>Hello World!</h1>, document.getElementById('root'));
+import Container from './containers/Container';
+
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+root.render(<Container />);
