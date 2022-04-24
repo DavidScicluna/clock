@@ -1,6 +1,7 @@
+import { ButtonProps } from '@davidscicluna/component-library';
+
 import { ColorMode } from '@chakra-ui/react';
 
-import { ButtonProps } from '@davidscicluna/component-library';
 
 export type DescriptionRef = HTMLDivElement | null;
 

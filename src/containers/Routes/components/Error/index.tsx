@@ -1,8 +1,9 @@
 import { FC } from 'react';
 
+import { Divider } from '@davidscicluna/component-library';
+
 import { ColorMode, useColorMode, useMediaQuery, Center, HStack, VStack } from '@chakra-ui/react';
 
-import { Divider } from '@davidscicluna/component-library';
 import { useElementSize } from 'usehooks-ts';
 
 import Actions from './components/Actions';

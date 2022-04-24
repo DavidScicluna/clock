@@ -1,8 +1,9 @@
 import { FC, useState } from 'react';
 
+import { TabBar } from '@davidscicluna/component-library';
+
 import { VStack, Center } from '@chakra-ui/react';
 
-import { TabBar } from '@davidscicluna/component-library';
 import { useNavigate } from 'react-router-dom';
 
 import Routes from '../Routes';

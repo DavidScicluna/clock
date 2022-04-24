@@ -66,7 +66,7 @@
 		"import/order": [
 			"error",
 			{
-				"groups": ["builtin", "external", "internal", "sibling", "parent", "index"],
+				"groups": ["external", "builtin", "internal", "parent", "sibling", "index"],
 				"pathGroups": [
 					{
 						"pattern": "react",
@@ -74,27 +74,21 @@
 						"position": "before"
 					},
 					{
-						"pattern": "react-router-dom/**",
+						"pattern": "@davidscicluna/component-library",
 						"group": "external",
 						"position": "before"
 					},
 					{
-						"pattern": "react*/**",
-						"group": "external",
-						"position": "before"
-					},
-					{
-						"pattern": "@chakra-ui*/**",
+						"pattern": "@chakra-ui/**",
 						"group": "external",
 						"position": "before"
 					}
 				],
-				"pathGroupsExcludedImportTypes": ["react", "react-router-dom/**", "react*/**", "@chakra-ui*/**"],
-				"newlines-between": "always",
-				"alphabetize": {
-					"order": "asc",
-					"caseInsensitive": true
-				}
+				"newlines-between": "always"
+				// "alphabetize": {
+				// 	"order": "asc",
+				// 	"caseInsensitive": true
+				// }
 			}
 		]
 	}

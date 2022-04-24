@@ -2,9 +2,10 @@ import { ReactElement, forwardRef } from 'react';
 
 import { VStack, Text } from '@chakra-ui/react';
 
+import { DescriptionRef } from '../../types';
+
 import { DescriptionProps } from './types';
 
-import { DescriptionRef } from '../../types';
 
 const Description = forwardRef<DescriptionRef, DescriptionProps>(function Description(props, ref): ReactElement {
 	const { colorMode, title, subtitle } = props;

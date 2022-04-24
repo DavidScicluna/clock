@@ -2,9 +2,10 @@ import { Component, ErrorInfo } from 'react';
 
 import { Container } from '@chakra-ui/react';
 
+import Error from '../../../Error';
+
 import { ErrorBoundaryProps, State } from './types';
 
-import Error from '../../../Error';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
 	public state: State = {

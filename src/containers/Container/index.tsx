@@ -1,8 +1,9 @@
 import { FC } from 'react';
 
+import { theme } from '@davidscicluna/component-library';
+
 import { ChakraProvider } from '@chakra-ui/react';
 
-import { theme } from '@davidscicluna/component-library';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
