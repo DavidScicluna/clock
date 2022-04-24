@@ -9,8 +9,6 @@ import Animation from './components/Animation';
 import NoMatch from './components/NoMatch';
 import Suspense from './components/Suspense';
 
-import Layout from '../Layout';
-
 const Alarm = lazy(() => import('../../pages/Alarm'));
 const Stopwatch = lazy(() => import('../../pages/Stopwatch'));
 const Timer = lazy(() => import('../../pages/Timer'));
@@ -18,32 +16,25 @@ const WorldClock = lazy(() => import('../../pages/WorldClock'));
 
 export const handleReturnRoutes = (): RouteObject[] => {
 	return [
-		// Private Routes
 		{
 			path: '/',
-			children: [
-				{
-					index: true,
-					element: <WorldClock />
-				},
-				{
-					path: '/alarm',
-					element: <Alarm />
-				},
-				{
-					path: '/stopwatch',
-					element: <Stopwatch />
-				},
-				{
-					path: '/timer',
-					element: <Timer />
-				},
-				{
-					path: '*',
-					element: <NoMatch />
-				}
-			],
-			element: <Layout />
+			element: <WorldClock />
+		},
+		{
+			path: '/alarm',
+			element: <Alarm />
+		},
+		{
+			path: '/stopwatch',
+			element: <Stopwatch />
+		},
+		{
+			path: '/timer',
+			element: <Timer />
+		},
+		{
+			path: '*',
+			element: <NoMatch />
 		}
 	];
 };
