@@ -5,6 +5,7 @@ import { ColorMode, useColorMode, useMediaQuery, Center, HStack, VStack } from '
 import { Divider } from '@davidscicluna/component-library';
 import { useElementSize } from 'usehooks-ts';
 
+import Actions from './components/Actions';
 import Code from './components/Code';
 import Description from './components/Description';
 import { ErrorProps } from './types';
@@ -15,7 +16,7 @@ const Error: FC<ErrorProps> = (props) => {
 
 	const [descriptionRef, { height }] = useElementSize();
 
-	const { color, colorMode: colorModeProp, code = 404, title, subtitle, renderActions } = props;
+	const { color, colorMode: colorModeProp, code = 404, title, subtitle } = props;
 
 	const colorMode: ColorMode = colorModeProp || colorModeHook;
 
@@ -34,11 +35,7 @@ const Error: FC<ErrorProps> = (props) => {
 					</HStack>
 				)}
 
-				{renderActions ? (
-					<HStack width='100%' alignItems='flex-start' spacing={2}>
-						{renderActions({ color, colorMode, size: 'md' })}
-					</HStack>
-				) : null}
+				<Actions color={color} colorMode={colorMode} size='md' />
 			</VStack>
 		</Center>
 	);
