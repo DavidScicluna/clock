@@ -1,7 +1,6 @@
-import { ReactElement, lazy, FC } from 'react';
+import { ReactElement, FC } from 'react';
 
 import { useConst } from '@chakra-ui/react';
-
 import { AnimatePresence } from 'framer-motion';
 import { RouteObject, useLocation, Routes as RRDRoutes, Route } from 'react-router-dom';
 
@@ -9,29 +8,29 @@ import Animation from './components/Animation';
 import NoMatch from './components/NoMatch';
 import Suspense from './components/Suspense';
 
-const Alarm = lazy(() => import('../../pages/Alarm'));
-const Stopwatch = lazy(() => import('../../pages/Stopwatch'));
-const Timer = lazy(() => import('../../pages/Timer'));
-const WorldClock = lazy(() => import('../../pages/WorldClock'));
+// const Alarm = lazy(() => import('../../pages/Alarm'));
+// const Stopwatch = lazy(() => import('../../pages/Stopwatch'));
+// const Timer = lazy(() => import('../../pages/Timer'));
+// const WorldClock = lazy(() => import('../../pages/WorldClock'));
 
 export const handleReturnRoutes = (): RouteObject[] => {
 	return [
-		{
-			path: '/',
-			element: <WorldClock />
-		},
-		{
-			path: '/alarm',
-			element: <Alarm />
-		},
-		{
-			path: '/stopwatch',
-			element: <Stopwatch />
-		},
-		{
-			path: '/timer',
-			element: <Timer />
-		},
+		// {
+		// 	path: '/',
+		// 	element: <WorldClock />
+		// },
+		// {
+		// 	path: '/alarm',
+		// 	element: <Alarm />
+		// },
+		// {
+		// 	path: '/stopwatch',
+		// 	element: <Stopwatch />
+		// },
+		// {
+		// 	path: '/timer',
+		// 	element: <Timer />
+		// },
 		{
 			path: '*',
 			element: <NoMatch />
