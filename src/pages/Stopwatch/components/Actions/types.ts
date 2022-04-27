@@ -5,4 +5,5 @@ export type ActionsProps = {
 	timer: Timer;
 	onReset: () => void;
 	onStartPause: () => void;
+	onSetLap: () => void;
 };

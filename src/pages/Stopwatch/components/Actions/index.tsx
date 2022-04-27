@@ -8,10 +8,8 @@ import { compact, isEmpty } from 'lodash';
 
 import { ActionsProps } from './types';
 
-const color = 'blue';
-
 const Actions: FC<ActionsProps> = (props) => {
-	const { hasStarted = false, timer, onReset, onStartPause } = props;
+	const { hasStarted = false, timer, onReset, onStartPause, onSetLap } = props;
 	const { hours, minutes, seconds, milliseconds } = timer;
 
 	return (
@@ -27,13 +25,19 @@ const Actions: FC<ActionsProps> = (props) => {
 			</IconButton>
 			<IconButton
 				aria-label={hasStarted ? 'Pause' : 'Start'}
-				color={color}
+				color={hasStarted ? 'red' : 'green'}
 				onClick={() => onStartPause()}
 				size='xl'
 			>
 				<Icon icon={hasStarted ? 'pause' : 'play_arrow'} type='filled' />
 			</IconButton>
-			<IconButton aria-label='Set lap' isDisabled={!hasStarted} size='xl' variant='icon'>
+			<IconButton
+				aria-label='Set lap'
+				isDisabled={!hasStarted}
+				onClick={() => onSetLap()}
+				size='xl'
+				variant='icon'
+			>
 				<Icon icon='timer' type='outlined' />
 			</IconButton>
 		</HStack>
