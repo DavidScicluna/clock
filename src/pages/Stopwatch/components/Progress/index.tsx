@@ -3,7 +3,7 @@ import { FC, useState, useCallback, useEffect } from 'react';
 import { useColorMode, useBoolean, Text } from '@chakra-ui/react';
 
 import TimeProgress from '../../../../components/TimeProgress';
-import { checkTimer, updateTimerLabel } from '../../../../common/utils';
+import { checkTimer, getTimerLabel } from '../../../../common/utils';
 
 import { ProgressProps } from './types';
 
@@ -12,7 +12,7 @@ const color = 'blue';
 const Progress: FC<ProgressProps> = ({ timer }) => {
 	const { colorMode } = useColorMode();
 
-	const [label, setLabel] = useState<string>('');
+	const [time, setTime] = useState<string>('');
 
 	const [hasHours, setHasHours] = useBoolean();
 	const [hasMinutes, setHasMinutes] = useBoolean();
@@ -32,7 +32,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 			setHasMinutes.off();
 		}
 
-		setLabel(updateTimerLabel(timer));
+		setTime(getTimerLabel(timer));
 	}, [timer]);
 
 	useEffect(() => handleCheck(), [timer]);
@@ -47,7 +47,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 				whiteSpace='nowrap'
 				userSelect='none'
 			>
-				{label}
+				{time}
 			</Text>
 		</TimeProgress>
 	);
