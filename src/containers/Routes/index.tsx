@@ -1,4 +1,4 @@
-import { ReactElement, FC } from 'react';
+import { ReactElement, FC, lazy } from 'react';
 
 import { useConst } from '@chakra-ui/react';
 
@@ -10,7 +10,7 @@ import NoMatch from './components/NoMatch';
 import Suspense from './components/Suspense';
 
 // const Alarm = lazy(() => import('../../pages/Alarm'));
-// const Stopwatch = lazy(() => import('../../pages/Stopwatch'));
+const Stopwatch = lazy(() => import('../../pages/Stopwatch'));
 // const Timer = lazy(() => import('../../pages/Timer'));
 // const WorldClock = lazy(() => import('../../pages/WorldClock'));
 
@@ -24,10 +24,10 @@ export const handleReturnRoutes = (): RouteObject[] => {
 		// 	path: '/alarm',
 		// 	element: <Alarm />
 		// },
-		// {
-		// 	path: '/stopwatch',
-		// 	element: <Stopwatch />
-		// },
+		{
+			path: '/stopwatch',
+			element: <Stopwatch />
+		},
 		// {
 		// 	path: '/timer',
 		// 	element: <Timer />
