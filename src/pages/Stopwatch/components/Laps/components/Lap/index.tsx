@@ -14,11 +14,11 @@ const Lap: FC<LapProps> = (props) => {
 	const [time, setTime] = useState<string>('');
 	const [color, setColor] = useState<string>('');
 
-	const handleSetTime = useCallback(() => {
+	const handleSetTime = useCallback((): void => {
 		setTime(getTimerLabel({ hours, minutes, seconds, milliseconds }));
 	}, [hours, minutes, seconds, milliseconds]);
 
-	const handleSetColor = useCallback(() => {
+	const handleSetColor = useCallback((): void => {
 		/* TODO: Add updated handleHue */
 		setColor(
 			status === 'fastest'

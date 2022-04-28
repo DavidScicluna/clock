@@ -17,7 +17,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 	const [hasHours, setHasHours] = useBoolean();
 	const [hasMinutes, setHasMinutes] = useBoolean();
 
-	const handleCheck = useCallback(() => {
+	const handleCheck = useCallback((): void => {
 		const has = checkTimer(timer);
 
 		if (has.hours) {

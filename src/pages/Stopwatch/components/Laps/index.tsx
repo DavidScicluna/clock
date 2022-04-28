@@ -9,7 +9,7 @@ import Lap from './components/Lap';
 
 const Laps: FC<LapsProps> = ({ laps = [], timer }) => {
 	return (
-		<VStack width='100%' divider={<Divider />}>
+		<VStack width='100%' height='100%' overflowY='auto' divider={<Divider />}>
 			<Lap {...timer} index={laps.length + 1} status='default' />
 
 			{laps.map((lap, index) => (
