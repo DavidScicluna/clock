@@ -15,9 +15,10 @@ const Animation: FC<AnimationProps> = ({ children }) => {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 			transition={{
-				duration: 0.5,
+				duration: 1,
 				ease: [0.76, 0, 0.24, 1]
 			}}
+			sx={{ width: '100%', height: '100%' }}
 		>
 			{children}
 		</MotionBox>
