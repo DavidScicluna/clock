@@ -28,7 +28,7 @@ export const updateTimer = memoize(({ hours, minutes, seconds, milliseconds }: T
 	return { hours: hr, minutes: min, seconds: sec, milliseconds: ms };
 });
 
-export const updateTimerLabel = memoize((timer: Timer): string => {
+export const getTimerLabel = memoize((timer: Timer): string => {
 	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
 
 	const hr = hours > 0 ? (hours >= 10 ? hours : `0${hours}`) : 0;
