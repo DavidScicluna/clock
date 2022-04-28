@@ -1,25 +1,67 @@
-import { FC, useState } from 'react';
+import { FC, useState, useCallback } from 'react';
 
-import { TabBar } from '@davidscicluna/component-library';
+import {
+	useTheme,
+	handleConvertREMToPixels,
+	handleConvertStringToNumber,
+	Space,
+	TabBar
+} from '@davidscicluna/component-library';
 
 import { VStack, Center } from '@chakra-ui/react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffectOnce, useElementSize } from 'usehooks-ts';
 
 import Routes from '../Routes';
 
+const spacing: Space = 2;
+
 const Layout: FC = () => {
+	const theme = useTheme();
+
+	const location = useLocation();
 	const navigate = useNavigate();
+
+	const [tabBarRef, { height: tabBarHeight }] = useElementSize();
 
 	const [activeTab, setActiveTab] = useState<number>(0);
 
+	const handleCheckLocation = useCallback(() => {
+		let activeTab = 0;
+
+		switch (location.pathname) {
+			case '/alarm':
+				activeTab = 1;
+				break;
+			case '/stopwatch':
+				activeTab = 2;
+				break;
+			case '/timer':
+				activeTab = 3;
+				break;
+			default:
+				activeTab = 0;
+				break;
+		}
+
+		setActiveTab(activeTab);
+	}, [location]);
+
+	useEffectOnce(() => handleCheckLocation());
+
 	return (
-		<VStack width='100%'>
-			<Center width='100%'>
+		<VStack width='100%' spacing={spacing}>
+			<Center
+				width='100%'
+				height={`calc(100vh - ${
+					tabBarHeight + handleConvertREMToPixels(handleConvertStringToNumber(theme.space[spacing], 'rem'))
+				}px)`}
+			>
 				<Routes />
 			</Center>
 
-			<Center width='100%' position='fixed' bottom={0} zIndex={1}>
+			<Center ref={tabBarRef} width='100%' position='fixed' bottom={0} zIndex={1}>
 				<TabBar
 					color='blue'
 					activeTab={activeTab}
