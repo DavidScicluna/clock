@@ -38,6 +38,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@davidscicluna/component-library", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#portal:../component-library::locator=cra-project-bootstrap%40workspace%3A."],\
             ["@emotion/react", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.9.0"],\
             ["@emotion/styled", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.8.1"],\
+            ["@fontsource/material-icons", "npm:4.5.4"],\
+            ["@fontsource/material-icons-outlined", "npm:4.5.4"],\
+            ["@fontsource/roboto", "npm:4.5.5"],\
+            ["@fontsource/roboto-mono", "npm:4.5.7"],\
+            ["@fontsource/roboto-slab", "npm:4.5.8"],\
             ["@reduxjs/toolkit", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:1.8.1"],\
             ["@testing-library/jest-dom", "npm:5.16.4"],\
             ["@testing-library/react", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:13.1.1"],\
@@ -47,6 +52,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:17.0.25"],\
             ["@types/react", "npm:18.0.6"],\
             ["@types/react-dom", "npm:18.0.2"],\
+            ["@types/uuid", "npm:8.3.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:5.20.0"],\
             ["@typescript-eslint/parser", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:5.20.0"],\
             ["eslint", "npm:8.14.0"],\
@@ -72,6 +78,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["redux-persist", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:6.0.0"],\
             ["typescript", "patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"],\
             ["usehooks-ts", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:2.5.1"],\
+            ["uuid", "npm:8.3.2"],\
             ["web-vitals", "npm:2.1.4"]\
           ],\
           "linkType": "SOFT"\
@@ -4738,11 +4745,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@chakra-ui/theme-tools", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:1.3.6"],\
             ["@emotion/react", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.9.0"],\
             ["@emotion/styled", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.8.1"],\
-            ["@fontsource/material-icons", null],\
-            ["@fontsource/material-icons-outlined", null],\
-            ["@fontsource/roboto", null],\
-            ["@fontsource/roboto-mono", null],\
-            ["@fontsource/roboto-slab", null],\
+            ["@fontsource/material-icons", "npm:4.5.4"],\
+            ["@fontsource/material-icons-outlined", "npm:4.5.4"],\
+            ["@fontsource/roboto", "npm:4.5.5"],\
+            ["@fontsource/roboto-mono", "npm:4.5.7"],\
+            ["@fontsource/roboto-slab", "npm:4.5.8"],\
             ["@types/chakra-ui__react", null],\
             ["@types/chakra-ui__theme-tools", null],\
             ["@types/emotion__react", null],\
@@ -5019,6 +5026,51 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-yaml", "npm:4.1.0"],\
             ["minimatch", "npm:3.1.2"],\
             ["strip-json-comments", "npm:3.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fontsource/material-icons", [\
+        ["npm:4.5.4", {\
+          "packageLocation": "./.yarn/cache/@fontsource-material-icons-npm-4.5.4-9647b93ef6-681f05a3b3.zip/node_modules/@fontsource/material-icons/",\
+          "packageDependencies": [\
+            ["@fontsource/material-icons", "npm:4.5.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fontsource/material-icons-outlined", [\
+        ["npm:4.5.4", {\
+          "packageLocation": "./.yarn/cache/@fontsource-material-icons-outlined-npm-4.5.4-359af6068c-0e37e6497a.zip/node_modules/@fontsource/material-icons-outlined/",\
+          "packageDependencies": [\
+            ["@fontsource/material-icons-outlined", "npm:4.5.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fontsource/roboto", [\
+        ["npm:4.5.5", {\
+          "packageLocation": "./.yarn/cache/@fontsource-roboto-npm-4.5.5-177755e000-ab6675e043.zip/node_modules/@fontsource/roboto/",\
+          "packageDependencies": [\
+            ["@fontsource/roboto", "npm:4.5.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fontsource/roboto-mono", [\
+        ["npm:4.5.7", {\
+          "packageLocation": "./.yarn/cache/@fontsource-roboto-mono-npm-4.5.7-8f610a095b-99faea2067.zip/node_modules/@fontsource/roboto-mono/",\
+          "packageDependencies": [\
+            ["@fontsource/roboto-mono", "npm:4.5.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fontsource/roboto-slab", [\
+        ["npm:4.5.8", {\
+          "packageLocation": "./.yarn/cache/@fontsource-roboto-slab-npm-4.5.8-3651fb22a9-41c8225b94.zip/node_modules/@fontsource/roboto-slab/",\
+          "packageDependencies": [\
+            ["@fontsource/roboto-slab", "npm:4.5.8"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6457,6 +6509,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-use-sync-external-store-npm-0.0.3-875a91a914-161ddb8eec.zip/node_modules/@types/use-sync-external-store/",\
           "packageDependencies": [\
             ["@types/use-sync-external-store", "npm:0.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/uuid", [\
+        ["npm:8.3.4", {\
+          "packageLocation": "./.yarn/cache/@types-uuid-npm-8.3.4-7547f4402c-6f11f3ff70.zip/node_modules/@types/uuid/",\
+          "packageDependencies": [\
+            ["@types/uuid", "npm:8.3.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8717,6 +8778,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@davidscicluna/component-library", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#portal:../component-library::locator=cra-project-bootstrap%40workspace%3A."],\
             ["@emotion/react", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.9.0"],\
             ["@emotion/styled", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.8.1"],\
+            ["@fontsource/material-icons", "npm:4.5.4"],\
+            ["@fontsource/material-icons-outlined", "npm:4.5.4"],\
+            ["@fontsource/roboto", "npm:4.5.5"],\
+            ["@fontsource/roboto-mono", "npm:4.5.7"],\
+            ["@fontsource/roboto-slab", "npm:4.5.8"],\
             ["@reduxjs/toolkit", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:1.8.1"],\
             ["@testing-library/jest-dom", "npm:5.16.4"],\
             ["@testing-library/react", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:13.1.1"],\
@@ -8726,6 +8792,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:17.0.25"],\
             ["@types/react", "npm:18.0.6"],\
             ["@types/react-dom", "npm:18.0.2"],\
+            ["@types/uuid", "npm:8.3.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:5.20.0"],\
             ["@typescript-eslint/parser", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:5.20.0"],\
             ["eslint", "npm:8.14.0"],\
@@ -8751,6 +8818,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["redux-persist", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:6.0.0"],\
             ["typescript", "patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"],\
             ["usehooks-ts", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:2.5.1"],\
+            ["uuid", "npm:8.3.2"],\
             ["web-vitals", "npm:2.1.4"]\
           ],\
           "linkType": "SOFT"\

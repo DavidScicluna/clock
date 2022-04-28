@@ -48,9 +48,15 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
-    "usehooks-ts": "^2.5.1"
+    "usehooks-ts": "^2.5.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@fontsource/material-icons": "^4.5.4",
+    "@fontsource/material-icons-outlined": "^4.5.4",
+    "@fontsource/roboto": "^4.5.5",
+    "@fontsource/roboto-mono": "^4.5.7",
+    "@fontsource/roboto-slab": "^4.5.8",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -59,6 +65,7 @@
     "@types/node": "^17.0.25",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "eslint": "^8.13.0",
