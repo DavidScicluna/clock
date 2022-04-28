@@ -46,6 +46,10 @@ export const updateTimerLabel = memoize((timer: Timer): string => {
 	return compact([hr, min, `${sec}.${ms}`]).join(':');
 });
 
+export const getLapTime = memoize(({ hours, minutes, seconds, milliseconds }: Timer): number =>
+	Number(getTimerLabel({ hours, minutes, seconds, milliseconds }).replaceAll(/:/g, ''))
+);
+
 export const checkTimer = memoize((timer: Timer) => {
 	const { hours = 0, minutes = 0 } = timer;
 
