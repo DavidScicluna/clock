@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useTheme, handleHue } from '@davidscicluna/component-library';
+import { useTheme, getColor } from '@davidscicluna/component-library';
 
 import { ColorMode, useColorMode, CircularProgress, CircularProgressLabel, VStack } from '@chakra-ui/react';
 
@@ -18,9 +18,9 @@ const TimeProgress: FC<TimeProgressProps> = (props) => {
 		<CircularProgress
 			{...rest}
 			capIsRound
-			color={`${color}.${handleHue(colorMode, color)}`}
+			color={getColor({ theme, colorMode, color, type: 'color' })}
 			thickness={theme.space['0.75']}
-			trackColor={`gray.${colorMode === 'light' ? 200 : 700}`}
+			trackColor={getColor({ theme, colorMode, type: 'divider' })}
 			size='358px'
 			sx={{
 				transitionDuration: theme.transition.duration.normal,
