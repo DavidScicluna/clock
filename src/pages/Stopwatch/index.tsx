@@ -1,6 +1,6 @@
 import { FC, useState, useCallback } from 'react';
 
-import { useBoolean, VStack, Collapse, Center } from '@chakra-ui/react';
+import { useBoolean, VStack, Center, Collapse } from '@chakra-ui/react';
 
 import { useInterval } from 'usehooks-ts';
 import { compact, isEmpty, isNil, orderBy } from 'lodash';
@@ -115,7 +115,7 @@ const Stopwatch: FC = () => {
 			});
 		}
 
-		setLaps(orderBy(updatedLaps, 'index', ['desc']));
+		setLaps(orderBy([...updatedLaps], 'index', ['desc']));
 	}, [laps, hours, minutes, seconds, milliseconds]);
 
 	useInterval(() => handleTimer(), hasStarted ? 10 : null);
@@ -123,7 +123,7 @@ const Stopwatch: FC = () => {
 	return (
 		<Center width='100%' height='100%' p={4}>
 			<VStack height='100%' align='center' justify='center' spacing={4}>
-				<VStack width='100%' spacing={2}>
+				<VStack width='100%' align='center' justify='center' spacing={2}>
 					<Progress timer={{ hours, minutes, seconds, milliseconds }} />
 
 					<Actions
@@ -138,7 +138,7 @@ const Stopwatch: FC = () => {
 				<Collapse
 					in={hasStarted || !isEmpty(compact([hours, minutes, seconds, milliseconds]))}
 					unmountOnExit
-					style={{ width: '100%', height: 'auto' }}
+					style={{ width: '100%', height: 'auto', overflowY: 'auto' }}
 				>
 					<Laps laps={laps} timer={{ hours, minutes, seconds, milliseconds }} />
 				</Collapse>
