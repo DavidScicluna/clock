@@ -1,5 +1,7 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
+import { useTheme, getColor } from '@davidscicluna/component-library';
+
 import { useColorMode, useBoolean, Text } from '@chakra-ui/react';
 
 import TimeProgress from '../../../../components/TimeProgress';
@@ -10,6 +12,7 @@ import { ProgressProps } from './types';
 const color = 'blue';
 
 const Progress: FC<ProgressProps> = ({ timer }) => {
+	const theme = useTheme();
 	const { colorMode } = useColorMode();
 
 	const [time, setTime] = useState<string>('');
@@ -41,8 +44,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 		<TimeProgress color={color} min={0} max={60} value={timer.seconds}>
 			<Text
 				align='center'
-				// TODO implement a proper handleHue method for all cases: divider, text, ... & set name to getHue
-				color={`gray.${colorMode === 'light' ? 400 : 500}`}
+				color={getColor({ theme, colorMode, type: 'text.secondary' })}
 				fontSize={hasHours && hasMinutes ? '4xl' : hasMinutes ? '5xl' : '6xl'}
 				whiteSpace='nowrap'
 				userSelect='none'

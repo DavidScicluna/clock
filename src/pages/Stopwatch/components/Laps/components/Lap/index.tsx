@@ -1,5 +1,7 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
+import { useTheme, getColor } from '@davidscicluna/component-library';
+
 import { useColorMode, HStack, Text } from '@chakra-ui/react';
 
 import { getTimerLabel } from '../../../../../../common/utils';
@@ -7,27 +9,28 @@ import { getTimerLabel } from '../../../../../../common/utils';
 import { LapProps } from './types';
 
 const Lap: FC<LapProps> = (props) => {
+	const theme = useTheme();
 	const { colorMode } = useColorMode();
 
 	const { index, hours = 0, minutes = 0, seconds = 0, milliseconds = 0, status = 'default' } = props;
 
 	const [time, setTime] = useState<string>('');
-	const [color, setColor] = useState<string>('');
+	const [color, setColor] = useState<string>(getColor({ theme, colorMode, type: 'text.secondary' }));
 
 	const handleSetTime = useCallback((): void => {
 		setTime(getTimerLabel({ hours, minutes, seconds, milliseconds }));
 	}, [hours, minutes, seconds, milliseconds]);
 
 	const handleSetColor = useCallback((): void => {
-		/* TODO: Add updated handleHue */
 		setColor(
-			status === 'fastest'
-				? `green.${colorMode === 'light' ? 500 : 400}`
-				: status === 'slowest'
-				? `red.${colorMode === 'light' ? 500 : 400}`
-				: `gray.${colorMode === 'light' ? 400 : 500}`
+			getColor({
+				theme,
+				colorMode,
+				type: status === 'default' ? 'text.secondary' : 'color',
+				color: status === 'fastest' ? 'green' : status === 'slowest' ? 'red' : 'gray'
+			})
 		);
-	}, [colorMode, status]);
+	}, [theme, colorMode, status]);
 
 	useEffect(() => handleSetTime(), [hours, minutes, seconds, milliseconds]);
 
