@@ -6,8 +6,9 @@ import { useInterval } from 'usehooks-ts';
 import { compact, isEmpty, isNil, orderBy } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
-import { updateStopwatch, getTimerValue } from '../../common/utils';
+import { getTimerValue } from '../../common/utils';
 
+import { updateStopwatch } from './common/utils';
 import Laps from './components/Laps';
 import Progress from './components/Progress';
 import Actions from './components/Actions';
