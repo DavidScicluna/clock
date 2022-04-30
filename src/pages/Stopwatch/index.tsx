@@ -6,7 +6,7 @@ import { useInterval } from 'usehooks-ts';
 import { compact, isEmpty, isNil, orderBy } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
-import { getLapTime, updateTimer } from '../../common/utils';
+import { updateStopwatch, getTimerValue } from '../../common/utils';
 
 import Laps from './components/Laps';
 import Progress from './components/Progress';
@@ -24,7 +24,7 @@ const Stopwatch: FC = () => {
 	const [laps, setLaps] = useState<Lap[]>([]);
 
 	const handleTimer = useCallback((): void => {
-		const timer = updateTimer({ hours, minutes, seconds, milliseconds });
+		const timer = updateStopwatch({ hours, minutes, seconds, milliseconds });
 
 		setHours(timer.hours);
 		setMinutes(timer.minutes);
@@ -64,14 +64,14 @@ const Stopwatch: FC = () => {
 
 			orderBy(updatedLaps, 'index').forEach((lap, index) => {
 				if (!isNil(slowest) && !isNil(fastest)) {
-					const lapTime = getLapTime({
+					const lapTime = getTimerValue({
 						hours: lap.hours,
 						minutes: lap.minutes,
 						seconds: lap.seconds,
 						milliseconds: lap.milliseconds
 					});
 					const nextLap = updatedLaps[index - 1];
-					const nextLapTime = getLapTime({
+					const nextLapTime = getTimerValue({
 						hours: nextLap.hours,
 						minutes: nextLap.minutes,
 						seconds: nextLap.seconds,
@@ -80,13 +80,13 @@ const Stopwatch: FC = () => {
 
 					const difference = lapTime - nextLapTime;
 
-					const slowestLapTime = getLapTime({
+					const slowestLapTime = getTimerValue({
 						hours: slowest.hours,
 						minutes: slowest.minutes,
 						seconds: slowest.seconds,
 						milliseconds: slowest.milliseconds
 					});
-					const fastestLapTime = getLapTime({
+					const fastestLapTime = getTimerValue({
 						hours: fastest.hours,
 						minutes: fastest.minutes,
 						seconds: fastest.seconds,

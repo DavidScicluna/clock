@@ -21,7 +21,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 	const [hasMinutes, setHasMinutes] = useBoolean();
 
 	const handleCheck = useCallback((): void => {
-		const has = checkTimer(timer);
+		const has = checkTimer({ ...timer });
 
 		if (has.hours) {
 			setHasHours.on();
@@ -35,7 +35,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 			setHasMinutes.off();
 		}
 
-		setTime(getTimerLabel(timer));
+		setTime(getTimerLabel({ ...timer }));
 	}, [timer]);
 
 	useEffect(() => handleCheck(), [timer]);
@@ -46,6 +46,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 				align='center'
 				color={getColor({ theme, colorMode, type: 'text.secondary' })}
 				fontSize={hasHours && hasMinutes ? '4xl' : hasMinutes ? '5xl' : '6xl'}
+				fontFamily='mono'
 				whiteSpace='nowrap'
 				userSelect='none'
 			>
