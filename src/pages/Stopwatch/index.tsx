@@ -6,9 +6,7 @@ import { useInterval } from 'usehooks-ts';
 import { compact, isEmpty, isNil, orderBy } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
-import { getTimerValue } from '../../common/utils';
-
-import { updateStopwatch } from './common/utils';
+import { getStopwatchValue, updateStopwatch } from './common/utils';
 import Laps from './components/Laps';
 import Progress from './components/Progress';
 import Actions from './components/Actions';
@@ -65,14 +63,14 @@ const Stopwatch: FC = () => {
 
 			orderBy(updatedLaps, 'index').forEach((lap, index) => {
 				if (!isNil(slowest) && !isNil(fastest)) {
-					const lapTime = getTimerValue({
+					const lapTime = getStopwatchValue({
 						hours: lap.hours,
 						minutes: lap.minutes,
 						seconds: lap.seconds,
 						milliseconds: lap.milliseconds
 					});
 					const nextLap = updatedLaps[index - 1];
-					const nextLapTime = getTimerValue({
+					const nextLapTime = getStopwatchValue({
 						hours: nextLap.hours,
 						minutes: nextLap.minutes,
 						seconds: nextLap.seconds,
@@ -81,13 +79,13 @@ const Stopwatch: FC = () => {
 
 					const difference = lapTime - nextLapTime;
 
-					const slowestLapTime = getTimerValue({
+					const slowestLapTime = getStopwatchValue({
 						hours: slowest.hours,
 						minutes: slowest.minutes,
 						seconds: slowest.seconds,
 						milliseconds: slowest.milliseconds
 					});
-					const fastestLapTime = getTimerValue({
+					const fastestLapTime = getStopwatchValue({
 						hours: fastest.hours,
 						minutes: fastest.minutes,
 						seconds: fastest.seconds,

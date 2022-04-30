@@ -5,7 +5,8 @@ import { useTheme, getColor } from '@davidscicluna/component-library';
 import { useColorMode, useBoolean, Text } from '@chakra-ui/react';
 
 import TimeProgress from '../../../../components/TimeProgress';
-import { checkTimer, getTimerLabel } from '../../../../common/utils';
+import { checkTimer } from '../../../../common/utils';
+import { getStopwatchLabel } from '../../common/utils';
 
 import { ProgressProps } from './types';
 
@@ -35,7 +36,7 @@ const Progress: FC<ProgressProps> = ({ timer }) => {
 			setHasMinutes.off();
 		}
 
-		setTime(getTimerLabel({ ...timer }));
+		setTime(getStopwatchLabel({ ...timer }));
 	}, [timer]);
 
 	useEffect(() => handleCheck(), [timer]);

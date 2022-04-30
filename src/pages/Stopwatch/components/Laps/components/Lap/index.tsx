@@ -4,7 +4,7 @@ import { useTheme, getColor } from '@davidscicluna/component-library';
 
 import { useColorMode, HStack, Text } from '@chakra-ui/react';
 
-import { getTimerLabel } from '../../../../../../common/utils';
+import { getStopwatchLabel } from '../../../../common/utils';
 
 import { LapProps } from './types';
 
@@ -18,7 +18,7 @@ const Lap: FC<LapProps> = (props) => {
 	const [color, setColor] = useState<string>(getColor({ theme, colorMode, type: 'text.secondary' }));
 
 	const handleSetTime = useCallback((): void => {
-		setTime(getTimerLabel({ hours, minutes, seconds, milliseconds }));
+		setTime(getStopwatchLabel({ hours, minutes, seconds, milliseconds }));
 	}, [hours, minutes, seconds, milliseconds]);
 
 	const handleSetColor = useCallback((): void => {
