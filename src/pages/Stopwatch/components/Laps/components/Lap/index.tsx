@@ -38,11 +38,11 @@ const Lap: FC<LapProps> = (props) => {
 
 	return (
 		<HStack width='100%' justify='space-between'>
-			<Text align='left' color={color} fontSize='md' fontWeight='medium'>
+			<Text align='left' color={color} fontSize='lg' fontWeight='medium'>
 				{`Lap ${index}`}
 			</Text>
 
-			<Text align='left' color={color} fontSize='md' fontWeight='medium' fontFamily='mono'>
+			<Text align='left' color={color} fontSize='lg' fontWeight='medium' fontFamily='mono'>
 				{time}
 			</Text>
 		</HStack>
