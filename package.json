@@ -54,9 +54,9 @@
   "devDependencies": {
     "@fontsource/material-icons": "^4.5.4",
     "@fontsource/material-icons-outlined": "^4.5.4",
-    "@fontsource/roboto": "^4.5.5",
     "@fontsource/roboto-mono": "^4.5.7",
     "@fontsource/roboto-slab": "^4.5.8",
+    "@fontsource/work-sans": "^4.5.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",

@@ -40,9 +40,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.8.1"],\
             ["@fontsource/material-icons", "npm:4.5.4"],\
             ["@fontsource/material-icons-outlined", "npm:4.5.4"],\
-            ["@fontsource/roboto", "npm:4.5.5"],\
             ["@fontsource/roboto-mono", "npm:4.5.7"],\
             ["@fontsource/roboto-slab", "npm:4.5.8"],\
+            ["@fontsource/work-sans", "npm:4.5.7"],\
             ["@reduxjs/toolkit", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:1.8.1"],\
             ["@testing-library/jest-dom", "npm:5.16.4"],\
             ["@testing-library/react", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:13.1.1"],\
@@ -4747,18 +4747,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.8.1"],\
             ["@fontsource/material-icons", "npm:4.5.4"],\
             ["@fontsource/material-icons-outlined", "npm:4.5.4"],\
-            ["@fontsource/roboto", "npm:4.5.5"],\
             ["@fontsource/roboto-mono", "npm:4.5.7"],\
             ["@fontsource/roboto-slab", "npm:4.5.8"],\
+            ["@fontsource/work-sans", "npm:4.5.7"],\
             ["@types/chakra-ui__react", null],\
             ["@types/chakra-ui__theme-tools", null],\
             ["@types/emotion__react", null],\
             ["@types/emotion__styled", null],\
             ["@types/fontsource__material-icons", null],\
             ["@types/fontsource__material-icons-outlined", null],\
-            ["@types/fontsource__roboto", null],\
             ["@types/fontsource__roboto-mono", null],\
             ["@types/fontsource__roboto-slab", null],\
+            ["@types/fontsource__work-sans", null],\
             ["@types/framer-motion", null],\
             ["@types/react", "npm:18.0.6"],\
             ["@types/react-dom", "npm:18.0.2"],\
@@ -4781,7 +4781,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@fontsource/material-icons",\
             "@fontsource/roboto-mono",\
             "@fontsource/roboto-slab",\
-            "@fontsource/roboto",\
+            "@fontsource/work-sans",\
             "@types/chakra-ui__react",\
             "@types/chakra-ui__theme-tools",\
             "@types/emotion__react",\
@@ -4790,7 +4790,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/fontsource__material-icons",\
             "@types/fontsource__roboto-mono",\
             "@types/fontsource__roboto-slab",\
-            "@types/fontsource__roboto",\
+            "@types/fontsource__work-sans",\
             "@types/framer-motion",\
             "@types/react-dom",\
             "@types/react-router-dom",\
@@ -5048,15 +5048,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["@fontsource/roboto", [\
-        ["npm:4.5.5", {\
-          "packageLocation": "./.yarn/cache/@fontsource-roboto-npm-4.5.5-177755e000-ab6675e043.zip/node_modules/@fontsource/roboto/",\
-          "packageDependencies": [\
-            ["@fontsource/roboto", "npm:4.5.5"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["@fontsource/roboto-mono", [\
         ["npm:4.5.7", {\
           "packageLocation": "./.yarn/cache/@fontsource-roboto-mono-npm-4.5.7-8f610a095b-99faea2067.zip/node_modules/@fontsource/roboto-mono/",\
@@ -5071,6 +5062,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@fontsource-roboto-slab-npm-4.5.8-3651fb22a9-41c8225b94.zip/node_modules/@fontsource/roboto-slab/",\
           "packageDependencies": [\
             ["@fontsource/roboto-slab", "npm:4.5.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fontsource/work-sans", [\
+        ["npm:4.5.7", {\
+          "packageLocation": "./.yarn/cache/@fontsource-work-sans-npm-4.5.7-a09bc24be2-4de9dbc3e8.zip/node_modules/@fontsource/work-sans/",\
+          "packageDependencies": [\
+            ["@fontsource/work-sans", "npm:4.5.7"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8780,9 +8780,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:11.8.1"],\
             ["@fontsource/material-icons", "npm:4.5.4"],\
             ["@fontsource/material-icons-outlined", "npm:4.5.4"],\
-            ["@fontsource/roboto", "npm:4.5.5"],\
             ["@fontsource/roboto-mono", "npm:4.5.7"],\
             ["@fontsource/roboto-slab", "npm:4.5.8"],\
+            ["@fontsource/work-sans", "npm:4.5.7"],\
             ["@reduxjs/toolkit", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:1.8.1"],\
             ["@testing-library/jest-dom", "npm:5.16.4"],\
             ["@testing-library/react", "virtual:36f2dafb14f6eebabe749b72822a201cf0d402b081726cc5323f357dc5441477f9404e0c52660eb469a8a34079633a7ebf19f0e4c347e95132bbaa2718a883f0#npm:13.1.1"],\
