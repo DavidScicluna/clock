@@ -1,10 +1,18 @@
-import { memoize } from 'lodash';
+import { compact, memoize } from 'lodash';
 
 import { Timer } from '../types';
 
-export const checkTimer = memoize(({ hours = 0, minutes = 0 }: Timer): { hours: boolean; minutes: boolean } => {
+type TimerKeys = keyof Timer;
+
+type CheckTimerReturn = { [key in TimerKeys]: boolean };
+
+export const checkTimer = memoize((timer: Timer): CheckTimerReturn => {
+	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
+
 	let hasHours = false;
 	let hasMinutes = false;
+	let hasSeconds = false;
+	let hasMilliseconds = false;
 
 	if (hours > 0) {
 		hasHours = true;
@@ -18,5 +26,60 @@ export const checkTimer = memoize(({ hours = 0, minutes = 0 }: Timer): { hours: 
 		hasMinutes = false;
 	}
 
-	return { hours: hasHours, minutes: hasMinutes };
+	if (seconds > 0 || (hours > 0 && minutes > 0 && seconds === 0)) {
+		hasSeconds = true;
+	} else {
+		hasSeconds = false;
+	}
+
+	if (milliseconds > 0 || (hours > 0 && minutes > 0 && seconds > 0 && milliseconds === 0)) {
+		hasMilliseconds = true;
+	} else {
+		hasMilliseconds = false;
+	}
+
+	return { hours: hasHours, minutes: hasMinutes, seconds: hasSeconds, milliseconds: hasMilliseconds };
 });
+
+type TimerOptions = { [key in TimerKeys]: boolean };
+
+export const getLabel = memoize((timer: Partial<Timer>, options?: Partial<TimerOptions>): string => {
+	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
+	const {
+		hours: hasHours = true,
+		minutes: hasMinutes = true,
+		seconds: hasSeconds = true,
+		milliseconds: hasMilliseconds = true
+	} = options || {};
+
+	let hr: string | undefined;
+	let min: string | undefined;
+	let sec: string | undefined;
+	let ms: string | undefined;
+
+	if (hours > 0 && hasHours) {
+		hr = String(hours).padStart(2, '0');
+	}
+
+	if ((minutes > 0 || (hours > 0 && minutes === 0)) && hasMinutes) {
+		min = String(minutes).padStart(2, '0');
+	}
+
+	if ((seconds > 0 || (hours > 0 && minutes > 0 && seconds === 0)) && hasSeconds) {
+		sec = String(seconds).padStart(2, '0');
+	}
+
+	if ((milliseconds > 0 || (hours > 0 && minutes > 0 && seconds > 0 && milliseconds === 0)) && hasMilliseconds) {
+		if (seconds === 0) {
+			sec = String(seconds).padStart(2, '0');
+		}
+
+		ms = String(milliseconds).padStart(2, '0');
+	}
+
+	return compact([hr, min, sec, ms]).join(':');
+});
+
+export const getTimerValue = memoize((timer: Partial<Timer>, options?: Partial<TimerOptions>): number =>
+	Number(getLabel({ ...timer }, { ...options }).replaceAll(/:/g, ''))
+);
