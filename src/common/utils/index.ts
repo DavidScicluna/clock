@@ -2,7 +2,7 @@ import { compact, memoize } from 'lodash';
 
 import { Timer } from '../types';
 
-export const updateTimer = memoize(({ hours, minutes, seconds, milliseconds }: Timer): Timer => {
+export const updateStopwatch = memoize(({ hours, minutes, seconds, milliseconds }: Timer): Timer => {
 	let hr = hours;
 	let min = minutes;
 	let sec = seconds;
@@ -11,26 +11,24 @@ export const updateTimer = memoize(({ hours, minutes, seconds, milliseconds }: T
 	ms = ++ms;
 
 	if (ms === 100) {
-		sec = ++sec;
 		ms = 0;
+		sec = ++sec;
 	}
 
 	if (sec === 60) {
-		min = ++min;
 		sec = 0;
+		min = ++min;
 	}
 
 	if (min === 60) {
-		hr = ++hr;
 		min = 0;
+		hr = ++hr;
 	}
 
 	return { hours: hr, minutes: min, seconds: sec, milliseconds: ms };
 });
 
-export const getTimerLabel = memoize((timer: Timer): string => {
-	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
-
+export const getTimerLabel = memoize(({ hours = 0, minutes = 0, seconds = 0, milliseconds = 0 }: Timer): string => {
 	const hr = hours > 0 ? (hours >= 10 ? hours : `0${hours}`) : 0;
 	const min =
 		minutes > 0 || (hours > 0 && minutes === 0)
@@ -46,13 +44,11 @@ export const getTimerLabel = memoize((timer: Timer): string => {
 	return compact([hr, min, `${sec}.${ms}`]).join(':');
 });
 
-export const getLapTime = memoize(({ hours, minutes, seconds, milliseconds }: Timer): number =>
+export const getTimerValue = memoize(({ hours, minutes, seconds, milliseconds }: Timer): number =>
 	Number(getTimerLabel({ hours, minutes, seconds, milliseconds }).replaceAll(/:/g, ''))
 );
 
-export const checkTimer = memoize((timer: Timer) => {
-	const { hours = 0, minutes = 0 } = timer;
-
+export const checkTimer = memoize(({ hours = 0, minutes = 0 }: Timer): { hours: boolean; minutes: boolean } => {
 	let hasHours = false;
 	let hasMinutes = false;
 
