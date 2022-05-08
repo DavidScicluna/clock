@@ -1,11 +1,12 @@
 import { FC, useState, useCallback } from 'react';
 
 import {
-	useTheme,
-	handleConvertREMToPixels,
-	handleConvertStringToNumber,
 	Space,
-	TabBar
+	useTheme,
+	convertREMToPixels,
+	convertStringToNumber,
+	TabBar,
+	Icon
 } from '@davidscicluna/component-library';
 
 import { VStack, Center } from '@chakra-ui/react';
@@ -55,7 +56,7 @@ const Layout: FC = () => {
 			<Center
 				width='100%'
 				height={`calc(100vh - ${
-					tabBarHeight + handleConvertREMToPixels(handleConvertStringToNumber(theme.space[spacing], 'rem'))
+					tabBarHeight + convertREMToPixels(convertStringToNumber(theme.space[spacing], 'rem'))
 				}px)`}
 			>
 				<Routes />
@@ -67,27 +68,27 @@ const Layout: FC = () => {
 					activeTab={activeTab}
 					tabs={[
 						{
-							icon: 'language',
+							renderIcon: (props) => <Icon {...props} icon='language' type='filled' />,
 							label: 'World Clock',
 							onClick: () => navigate('/', { replace: true })
 						},
 						{
-							icon: 'alarm',
+							renderIcon: (props) => <Icon {...props} icon='alarm' type='filled' />,
 							label: 'Alarm',
 							onClick: () => navigate('/alarm', { replace: true })
 						},
 						{
-							icon: 'timer',
+							renderIcon: (props) => <Icon {...props} icon='timer' type='filled' />,
 							label: 'Stopwatch',
 							onClick: () => navigate('/stopwatch', { replace: true })
 						},
 						{
-							icon: 'hourglass_empty',
+							renderIcon: (props) => <Icon {...props} icon='hourglass_empty' type='filled' />,
 							label: 'Timer',
 							onClick: () => navigate('/timer', { replace: true })
 						}
 					]}
-					onChange={(index) => setActiveTab(index)}
+					onChange={(index: number) => setActiveTab(index)}
 				/>
 			</Center>
 		</VStack>
