@@ -11,7 +11,7 @@ import Suspense from './components/Suspense';
 
 // const Alarm = lazy(() => import('../../pages/Alarm'));
 const Stopwatch = lazy(() => import('../../pages/Stopwatch'));
-// const Timer = lazy(() => import('../../pages/Timer'));
+const Timer = lazy(() => import('../../pages/Timer'));
 // const WorldClock = lazy(() => import('../../pages/WorldClock'));
 
 export const handleReturnRoutes = (): RouteObject[] => {
@@ -28,10 +28,10 @@ export const handleReturnRoutes = (): RouteObject[] => {
 			path: '/stopwatch',
 			element: <Stopwatch />
 		},
-		// {
-		// 	path: '/timer',
-		// 	element: <Timer />
-		// },
+		{
+			path: '/timer',
+			element: <Timer />
+		},
 		{
 			path: '*',
 			element: <NoMatch />
