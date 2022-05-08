@@ -2,25 +2,24 @@ import { memoize } from 'lodash';
 
 import { Timer } from '../../types';
 
-export const updateTimer = memoize(({ hours, minutes, seconds }: Timer): Timer => {
-	let hr = hours;
-	let min = minutes;
-	let sec = seconds;
+export const getSecondsFromTimer = memoize(({ hours = 0, minutes = 0, seconds = 0 }: Timer): number => {
+	let s = seconds;
 
-	if (hr === 0 && min === 0 && sec === 0) {
-		sec = 0;
-		min = 0;
-		hr = 0;
-	} else if (min !== 0 && sec === 0) {
-		sec = 59;
-		--min;
-	} else if (hr !== 0 && min === 0 && sec === 0) {
-		sec = 59;
-		min = 59;
-		--hr;
-	} else {
-		sec = --sec;
+	if (hours > 0) {
+		s = s + hours * 60 * 60;
 	}
 
-	return { hours: hr, minutes: min, seconds: sec };
+	if (minutes > 0) {
+		s = s + minutes * 60;
+	}
+
+	return s;
+});
+
+export const getTimerFromSeconds = memoize(({ seconds = 0 }: Pick<Timer, 'seconds'>): Timer => {
+	return {
+		hours: Math.floor((seconds % (3600 * 24)) / 3600),
+		minutes: Math.floor((seconds % 3600) / 60),
+		seconds: Math.floor(seconds % 60)
+	};
 });
