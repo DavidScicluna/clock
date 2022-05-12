@@ -13,12 +13,11 @@ const Actions: FC<ActionsProps> = (props) => {
 	const { hours, minutes, seconds, milliseconds } = timer;
 
 	return (
-		<HStack>
+		<HStack spacing={2}>
 			<IconButton
 				aria-label='Reset'
 				isDisabled={hasStarted || isEmpty(compact([hours, minutes, seconds, milliseconds]))}
 				onClick={() => onReset()}
-				size='xl'
 				variant='icon'
 			>
 				<Icon icon='replay' type='outlined' />
@@ -31,13 +30,7 @@ const Actions: FC<ActionsProps> = (props) => {
 			>
 				<Icon icon={hasStarted ? 'pause' : 'play_arrow'} type='filled' />
 			</IconButton>
-			<IconButton
-				aria-label='Set lap'
-				isDisabled={!hasStarted}
-				onClick={() => onSetLap()}
-				size='xl'
-				variant='icon'
-			>
+			<IconButton aria-label='Set lap' isDisabled={!hasStarted} onClick={() => onSetLap()} variant='icon'>
 				<Icon icon='timer' type='outlined' />
 			</IconButton>
 		</HStack>

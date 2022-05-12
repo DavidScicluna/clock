@@ -24,7 +24,8 @@ const Item: FC<ItemProps> = ({ caption, value = 0, minValue, maxValue, onClick }
 				{caption}
 			</Text>
 
-			{/* TODO: Create a  ButtonGroup in component library that handles borderradius on its own */}
+			{/* TODO: Create a ButtonGroup in component library that handles borderradius on its own */}
+			{/* TODO: Add Tooltip  in component library */}
 			<ButtonGroup isAttached>
 				<IconButton
 					aria-label='Add 1'
