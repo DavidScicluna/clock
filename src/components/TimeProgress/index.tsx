@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { ColorMode, useColorMode, CircularProgress, CircularProgressLabel, VStack } from '@chakra-ui/react';
 import { useTheme, getColor } from '@davidscicluna/component-library';
+
+import { ColorMode, useColorMode, CircularProgress, CircularProgressLabel, VStack } from '@chakra-ui/react';
 
 
 import { TimeProgressProps } from './types';

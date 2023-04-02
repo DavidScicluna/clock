@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { useMediaQuery } from '@chakra-ui/react';
 import { Button } from '@davidscicluna/component-library';
+
+import { useMediaQuery } from '@chakra-ui/react';
 
 
 import { ActionsProps } from './types';

@@ -1,7 +1,9 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
-import { HStack } from '@chakra-ui/react';
 import { FontSize } from '@davidscicluna/component-library';
+
+import { HStack } from '@chakra-ui/react';
+
 import { compact } from 'lodash';
 
 import Label from './components/Label';

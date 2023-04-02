@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { useColorMode, VStack, ButtonGroup, Text } from '@chakra-ui/react';
 import { useTheme, getColor, IconButton, Icon } from '@davidscicluna/component-library';
+
+import { useColorMode, VStack, ButtonGroup, Text } from '@chakra-ui/react';
 
 
 import { ItemProps } from './types';

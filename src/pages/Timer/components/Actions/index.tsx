@@ -1,7 +1,9 @@
 import { FC, useCallback, useEffect } from 'react';
 
-import { useBoolean, HStack } from '@chakra-ui/react';
 import { Button, Icon } from '@davidscicluna/component-library';
+
+import { useBoolean, HStack } from '@chakra-ui/react';
+
 import { compact, isEmpty } from 'lodash';
 
 import { ActionsProps } from './types';

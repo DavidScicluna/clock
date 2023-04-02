@@ -1,6 +1,7 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
 import { Center, Fade, VStack } from '@chakra-ui/react';
+
 import { AnimatePresence } from 'framer-motion';
 import { useCountdown, useUpdateEffect } from 'usehooks-ts';
 

@@ -1,7 +1,9 @@
 import { FC } from 'react';
 
-import { HStack } from '@chakra-ui/react';
 import { IconButton, Icon } from '@davidscicluna/component-library';
+
+import { HStack } from '@chakra-ui/react';
+
 import { compact, isEmpty } from 'lodash';
 
 import { ActionsProps } from './types';

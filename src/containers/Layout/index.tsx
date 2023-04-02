@@ -1,6 +1,7 @@
 import { FC, useState, useCallback } from 'react';
 
-import { VStack, Center } from '@chakra-ui/react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import {
 	Space,
 	useTheme,
@@ -9,7 +10,9 @@ import {
 	TabBar,
 	Icon
 } from '@davidscicluna/component-library';
-import { useLocation, useNavigate } from 'react-router-dom';
+
+import { VStack, Center } from '@chakra-ui/react';
+
 import { useEffectOnce, useElementSize } from 'usehooks-ts';
 
 import Routes from '../Routes';
