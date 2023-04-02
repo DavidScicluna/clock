@@ -6,7 +6,6 @@ import Error from '../../../Error';
 
 import { ErrorBoundaryProps, State } from './types';
 
-
 class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
 	public state: State = {
 		hasError: false

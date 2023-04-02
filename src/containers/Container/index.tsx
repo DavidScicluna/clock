@@ -1,9 +1,6 @@
 import { FC } from 'react';
 
-import { theme } from '@davidscicluna/component-library';
-
-import { ChakraProvider } from '@chakra-ui/react';
-
+import { DSCLProvider } from '@davidscicluna/component-library';
 
 // import { Provider } from 'react-redux';
 // import { persistStore } from 'redux-persist';
@@ -28,11 +25,11 @@ const Container: FC = () => {
 	return (
 		// <Provider store={store}>
 		// 	<PersistGate loading={null} persistor={persistor}>
-		<ChakraProvider theme={theme} resetCSS>
+		<DSCLProvider>
 			<Router>
 				<Layout />
 			</Router>
-		</ChakraProvider>
+		</DSCLProvider>
 		// 	</PersistGate>
 		// </Provider>
 	);

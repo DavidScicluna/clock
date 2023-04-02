@@ -1,13 +1,14 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
-import { useTheme, getColor } from '@davidscicluna/component-library';
+import { useTheme, utils } from '@davidscicluna/component-library';
 
 import { useColorMode, HStack, Text } from '@chakra-ui/react';
-
 
 import { getStopwatchLabel } from '../../../../common/utils';
 
 import { LapProps } from './types';
+
+const { getColor } = utils;
 
 const Lap: FC<LapProps> = (props) => {
 	const theme = useTheme();

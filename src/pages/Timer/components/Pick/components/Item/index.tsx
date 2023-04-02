@@ -1,11 +1,12 @@
 import { FC } from 'react';
 
-import { useTheme, getColor, ButtonGroup, IconButton, Icon } from '@davidscicluna/component-library';
+import { useTheme, ButtonGroup, IconButton, Icon, utils } from '@davidscicluna/component-library';
 
 import { useColorMode, VStack, Text } from '@chakra-ui/react';
 
-
 import { ItemProps } from './types';
+
+const { getColor } = utils;
 
 const Item: FC<ItemProps> = ({ caption, value = 0, minValue, maxValue, onClick }) => {
 	const theme = useTheme();

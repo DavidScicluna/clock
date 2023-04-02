@@ -1,11 +1,12 @@
 import { FC } from 'react';
 
-import { useTheme, getColor } from '@davidscicluna/component-library';
+import { useTheme, utils } from '@davidscicluna/component-library';
 
 import { useColorMode, VStack, Text } from '@chakra-ui/react';
 
-
 import { LabelProps } from './types';
+
+const { getColor } = utils;
 
 const Label: FC<LabelProps> = (props) => {
 	const theme = useTheme();

@@ -1,11 +1,12 @@
 import { FC } from 'react';
 
-import { useTheme, getColor } from '@davidscicluna/component-library';
+import { useTheme, utils } from '@davidscicluna/component-library';
 
 import { ColorMode, useColorMode, CircularProgress, CircularProgressLabel, VStack } from '@chakra-ui/react';
 
-
 import { TimeProgressProps } from './types';
+
+const { getColor } = utils;
 
 const TimeProgress: FC<TimeProgressProps> = (props) => {
 	const theme = useTheme();

@@ -4,7 +4,6 @@ import { Color } from '@davidscicluna/component-library';
 
 import { CircularProgressProps, ColorMode } from '@chakra-ui/react';
 
-
 export type TimeProgressColor = Exclude<Color, 'transparent' | 'black' | 'white' | 'gray'>;
 
 type Omitted = 'getValueText' | 'isIndeterminate' | 'size' | 'thickness' | 'trackColor';
