@@ -1,10 +1,8 @@
-import { ReactElement, FC, lazy } from 'react';
+import { FC, lazy } from 'react';
 
 import { RouteObject, useLocation, Routes as RRDRoutes, Route } from 'react-router-dom';
 
-import { useConst } from '@chakra-ui/react';
-
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from '@davidscicluna/component-library';
 
 import Animation from './components/Animation';
 import NoMatch from './components/NoMatch';
@@ -22,15 +20,15 @@ export const handleReturnRoutes = (): RouteObject[] => {
 		// 	element: <WorldClock />
 		// },
 		// {
-		// 	path: '/alarm',
+		// 	path: '/',
 		// 	element: <Alarm />
 		// },
 		{
-			path: '/stopwatch',
+			path: '/',
 			element: <Stopwatch />
 		},
 		{
-			path: '/timer',
+			path: '/',
 			element: <Timer />
 		},
 		{
@@ -40,34 +38,45 @@ export const handleReturnRoutes = (): RouteObject[] => {
 	];
 };
 
-const handleReturnRoute = (route: Omit<RouteObject, 'index'>, index: string): ReactElement => {
-	const { path, element, children = [] } = route;
-
-	return (
-		<Route
-			{...route}
-			key={index}
-			path={path}
-			element={
-				<Suspense>
-					<Animation>{element}</Animation>
-				</Suspense>
-			}
-		>
-			{children.map((child, childIndex) => handleReturnRoute(child, `${index}${childIndex}`))}
-		</Route>
-	);
-};
-
 const Routes: FC = () => {
 	const location = useLocation();
 
-	const routes = useConst<RouteObject[]>(handleReturnRoutes());
-
 	return (
-		<AnimatePresence initial={false} mode='wait'>
+		<AnimatePresence>
 			<RRDRoutes key={location.pathname} location={location}>
-				{routes.map((route, index) => handleReturnRoute(route, `${index}`))}
+				<Route
+					path='/'
+					// element={<WorldClock />}
+				/>
+
+				<Route
+					path='/alarm'
+					//  element={<Alarm />}
+				/>
+
+				<Route
+					path='/stopwatch'
+					element={
+						<Suspense>
+							<Animation>
+								<Stopwatch />
+							</Animation>
+						</Suspense>
+					}
+				/>
+
+				<Route
+					path='/timer'
+					element={
+						<Suspense>
+							<Animation>
+								<Timer />
+							</Animation>
+						</Suspense>
+					}
+				/>
+
+				<Route path='*' element={<NoMatch />} />
 			</RRDRoutes>
 		</AnimatePresence>
 	);
