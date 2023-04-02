@@ -2,20 +2,15 @@ import { FC, useState, useCallback } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import {
-	Space,
-	useTheme,
-	convertREMToPixels,
-	convertStringToNumber,
-	TabBar,
-	Icon
-} from '@davidscicluna/component-library';
+import { Space, useTheme, TabBar, Icon, utils } from '@davidscicluna/component-library';
 
 import { VStack, Center } from '@chakra-ui/react';
 
 import { useEffectOnce, useElementSize } from 'usehooks-ts';
 
 import Routes from '../Routes';
+
+const { convertREMToPixels, convertStringToNumber } = utils;
 
 const spacing: Space = 2;
 
