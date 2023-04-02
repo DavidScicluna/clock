@@ -90,6 +90,7 @@ const Layout: FC = () => {
 						}
 					]}
 					onChange={(index: number) => setActiveTab(index)}
+					p={3}
 				/>
 			</Center>
 		</VStack>
