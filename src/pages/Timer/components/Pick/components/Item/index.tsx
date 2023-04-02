@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { useTheme, getColor, IconButton, Icon } from '@davidscicluna/component-library';
+import { useTheme, getColor, ButtonGroup, IconButton, Icon } from '@davidscicluna/component-library';
 
-import { useColorMode, VStack, ButtonGroup, Text } from '@chakra-ui/react';
+import { useColorMode, VStack, Text } from '@chakra-ui/react';
 
 import { ItemProps } from './types';
 
@@ -24,8 +24,6 @@ const Item: FC<ItemProps> = ({ caption, value = 0, minValue, maxValue, onClick }
 				{caption}
 			</Text>
 
-			{/* TODO: Create a ButtonGroup in component library that handles borderradius on its own */}
-			{/* TODO: Add Tooltip  in component library */}
 			<ButtonGroup isAttached>
 				<IconButton
 					aria-label='Add 1'
@@ -33,7 +31,6 @@ const Item: FC<ItemProps> = ({ caption, value = 0, minValue, maxValue, onClick }
 					onClick={() => onClick(value + 1)}
 					size='xl'
 					variant='outlined'
-					sx={{ '&::before': { borderRadius: `${theme.radii.lg} 0 0 ${theme.radii.lg}` } }}
 				>
 					<Icon icon='keyboard_arrow_up' type='outlined' />
 				</IconButton>
@@ -43,7 +40,6 @@ const Item: FC<ItemProps> = ({ caption, value = 0, minValue, maxValue, onClick }
 					onClick={() => onClick(value + 10)}
 					size='xl'
 					variant='outlined'
-					sx={{ '&::before': { borderRadius: `0 ${theme.radii.lg} ${theme.radii.lg} 0` } }}
 				>
 					<Icon icon='keyboard_double_arrow_up' type='outlined' />
 				</IconButton>
@@ -66,7 +62,6 @@ const Item: FC<ItemProps> = ({ caption, value = 0, minValue, maxValue, onClick }
 					onClick={() => onClick(value - 1)}
 					size='xl'
 					variant='outlined'
-					sx={{ '&::before': { borderRadius: `${theme.radii.lg} 0 0 ${theme.radii.lg}` } }}
 				>
 					<Icon icon='keyboard_arrow_down' type='outlined' />
 				</IconButton>
@@ -76,7 +71,6 @@ const Item: FC<ItemProps> = ({ caption, value = 0, minValue, maxValue, onClick }
 					onClick={() => onClick(value - 10)}
 					size='xl'
 					variant='outlined'
-					sx={{ '&::before': { borderRadius: `0 ${theme.radii.lg} ${theme.radii.lg} 0` } }}
 				>
 					<Icon icon='keyboard_double_arrow_down' type='outlined' />
 				</IconButton>
