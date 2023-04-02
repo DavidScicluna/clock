@@ -65,7 +65,7 @@ const Routes: FC = () => {
 	const routes = useConst<RouteObject[]>(handleReturnRoutes());
 
 	return (
-		<AnimatePresence exitBeforeEnter initial={false}>
+		<AnimatePresence initial={false} mode='wait'>
 			<RRDRoutes key={location.pathname} location={location}>
 				{routes.map((route, index) => handleReturnRoute(route, `${index}`))}
 			</RRDRoutes>
