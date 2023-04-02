@@ -1,14 +1,12 @@
 import { FC } from 'react';
 
-import { Divider } from '@davidscicluna/component-library';
-
 import { useBoolean, VStack, SlideFade } from '@chakra-ui/react';
-
+import { Divider } from '@davidscicluna/component-library';
 import { AnimatePresence } from 'framer-motion';
 import { useUpdateEffect } from 'usehooks-ts';
 
-import { LapsProps } from './types';
 import Lap from './components/Lap';
+import { LapsProps } from './types';
 
 const Laps: FC<LapsProps> = ({ laps = [], timer }) => {
 	const [animate, setAnimate] = useBoolean(true);

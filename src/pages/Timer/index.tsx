@@ -1,16 +1,15 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
 import { Center, Fade, VStack } from '@chakra-ui/react';
-
-import { useCountdown, useUpdateEffect } from 'usehooks-ts';
 import { AnimatePresence } from 'framer-motion';
+import { useCountdown, useUpdateEffect } from 'usehooks-ts';
 
-import Pick from './components/Pick';
-import Progress from './components/Progress';
-import Actions from './components/Actions';
-import { PickType } from './components/Pick/types';
-import { Status } from './types';
 import { getSecondsFromTimer } from './common/utils';
+import Actions from './components/Actions';
+import Pick from './components/Pick';
+import { PickType } from './components/Pick/types';
+import Progress from './components/Progress';
+import { Status } from './types';
 
 const Timer: FC = () => {
 	const [status, setStatus] = useState<Status>('pick');

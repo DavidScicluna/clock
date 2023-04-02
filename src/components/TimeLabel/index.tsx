@@ -1,13 +1,11 @@
 import { FC, useState, useCallback, useEffect } from 'react';
 
-import { FontSize } from '@davidscicluna/component-library';
-
 import { HStack } from '@chakra-ui/react';
-
+import { FontSize } from '@davidscicluna/component-library';
 import { compact } from 'lodash';
 
-import { TimeLabelProps } from './types';
 import Label from './components/Label';
+import { TimeLabelProps } from './types';
 
 const TimeLabel: FC<TimeLabelProps> = ({ timer, options }) => {
 	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;

@@ -1,5 +1,6 @@
 import { FC, useState, useCallback } from 'react';
 
+import { VStack, Center } from '@chakra-ui/react';
 import {
 	Space,
 	useTheme,
@@ -8,9 +9,6 @@ import {
 	TabBar,
 	Icon
 } from '@davidscicluna/component-library';
-
-import { VStack, Center } from '@chakra-ui/react';
-
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffectOnce, useElementSize } from 'usehooks-ts';
 

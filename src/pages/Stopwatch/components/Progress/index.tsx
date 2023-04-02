@@ -2,9 +2,9 @@ import { FC, useCallback, useEffect } from 'react';
 
 import { useBoolean } from '@chakra-ui/react';
 
+import { checkTimer } from '../../../../common/utils';
 import TimeLabel from '../../../../components/TimeLabel';
 import TimeProgress from '../../../../components/TimeProgress';
-import { checkTimer } from '../../../../common/utils';
 
 import { ProgressProps } from './types';
 

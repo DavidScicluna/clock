@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
+import { CircularProgressProps, ColorMode } from '@chakra-ui/react';
 import { Color } from '@davidscicluna/component-library';
 
-import { CircularProgressProps, ColorMode } from '@chakra-ui/react';
 
 export type TimeProgressColor = Exclude<Color, 'transparent' | 'black' | 'white' | 'gray'>;
 

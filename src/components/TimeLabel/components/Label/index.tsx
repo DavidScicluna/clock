@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
+import { useColorMode, VStack, Text } from '@chakra-ui/react';
 import { useTheme, getColor } from '@davidscicluna/component-library';
 
-import { useColorMode, VStack, Text } from '@chakra-ui/react';
 
 import { LabelProps } from './types';
 

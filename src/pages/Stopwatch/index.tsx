@@ -1,18 +1,17 @@
 import { FC, useState, useCallback } from 'react';
 
 import { useBoolean, VStack, Center, Collapse } from '@chakra-ui/react';
-
-import { useInterval } from 'usehooks-ts';
 import { compact, isEmpty, isNil, orderBy } from 'lodash';
+import { useInterval } from 'usehooks-ts';
 import { v4 as uuid } from 'uuid';
 
 import { getTimerValue } from '../../common/utils';
 
 import { updateStopwatch } from './common/utils';
-import Laps from './components/Laps';
-import Progress from './components/Progress';
 import Actions from './components/Actions';
+import Laps from './components/Laps';
 import { Lap } from './components/Laps/components/Lap/types';
+import Progress from './components/Progress';
 
 const Stopwatch: FC = () => {
 	const [hasStarted, setHasStarted] = useBoolean();
