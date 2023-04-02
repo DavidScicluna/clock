@@ -2,7 +2,7 @@ import { FC, useState, useCallback } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Space, useTheme, TabBar, Icon, utils } from '@davidscicluna/component-library';
+import { Space, useTheme, useDebounce, TabBar, Icon, utils } from '@davidscicluna/component-library';
 
 import { VStack, Center } from '@chakra-ui/react';
 
@@ -12,6 +12,7 @@ import Routes from '../Routes';
 
 const { convertREMToPixels, convertStringToNumber } = utils;
 
+const defaultActiveTab = 0;
 const spacing: Space = 2;
 
 const Layout: FC = () => {
@@ -22,10 +23,17 @@ const Layout: FC = () => {
 
 	const [tabBarRef, { height: tabBarHeight }] = useElementSize();
 
-	const [activeTab, setActiveTab] = useState<number>(0);
+	const [activeTab, setActiveTab] = useState<number>(defaultActiveTab);
+	const debouncedActiveTab = useDebounce<number>(activeTab);
 
-	const handleCheckLocation = useCallback(() => {
-		let activeTab = 0;
+	const handleRoutesHeight = useCallback((): string => {
+		const spacingHeight = convertREMToPixels(convertStringToNumber(theme.space[spacing], 'rem')) || 0;
+
+		return `calc(100vh - ${tabBarHeight + spacingHeight}px)`;
+	}, [theme, spacing, tabBarHeight]);
+
+	const handleCheckLocation = (): void => {
+		let activeTab = defaultActiveTab;
 
 		switch (location.pathname) {
 			case '/alarm':
@@ -43,25 +51,20 @@ const Layout: FC = () => {
 		}
 
 		setActiveTab(activeTab);
-	}, [location]);
+	};
 
 	useEffectOnce(() => handleCheckLocation());
 
 	return (
 		<VStack width='100%' spacing={spacing}>
-			<Center
-				width='100%'
-				height={`calc(100vh - ${
-					tabBarHeight + convertREMToPixels(convertStringToNumber(theme.space[spacing], 'rem'))
-				}px)`}
-			>
+			<Center width='100%' height={handleRoutesHeight()}>
 				<Routes />
 			</Center>
 
 			<Center ref={tabBarRef} width='100%' position='fixed' bottom={0} zIndex={1}>
 				<TabBar
 					color='blue'
-					activeTab={activeTab}
+					activeTab={debouncedActiveTab}
 					tabs={[
 						{
 							renderIcon: (props) => <Icon {...props} icon='language' type='filled' />,
@@ -85,7 +88,7 @@ const Layout: FC = () => {
 						}
 					]}
 					onChange={(index: number) => setActiveTab(index)}
-					p={3}
+					// p={3}
 				/>
 			</Center>
 		</VStack>
