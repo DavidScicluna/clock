@@ -4,6 +4,7 @@
 	"parserOptions": {
 		"ecmaVersion": 2020,
 		"sourceType": "module",
+		"project": "./tsconfig.json",
 		"ecmaFeatures": {
 			"jsx": true
 		}
@@ -38,12 +39,14 @@
 		"plugin:react-hooks/recommended",
 		"plugin:@typescript-eslint/recommended"
 	],
-	"plugins": ["import"],
+	"plugins": ["import", "simple-import-sort"],
 	"rules": {
 		"jsx-a11y/href-no-hash": "off",
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
 		"react-hooks/exhaustive-deps": "off",
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
 		"import/no-unresolved": "error",
 		"no-mixed-spaces-and-tabs": 0,
 		"max-len": [
@@ -67,49 +70,46 @@
 				"specialLink": ["hrefLeft", "hrefRight"],
 				"aspects": ["invalidHref", "preferButton"]
 			}
-		],
-		"import/order": [
-			"error",
-			{
-				"groups": ["external", "builtin", "internal", "parent", "sibling", "index"],
-				"pathGroups": [
-					{
-						"pattern": "react",
-						"group": "external",
-						"position": "before"
-					},
-					{
-						"pattern": "react-router",
-						"group": "external",
-						"position": "before"
-					},
-					{
-						"pattern": "react-router-dom",
-						"group": "external",
-						"position": "before"
-					},
-					{
-						"pattern": "@davidscicluna/component-library",
-						"group": "external",
-						"position": "before"
-					},
-					{
-						"pattern": "@chakra-ui/react",
-						"group": "external",
-						"position": "before"
-					},
-					{
-						"pattern": "@tanstack/react-query",
-						"group": "external",
-						"position": "before"
-					}
-				],
-				"newlines-between": "always",
-				"alphabetize": {
-					"order": "asc",
-					"caseInsensitive": true
-				}
-			}
 		]
-	}
+	},
+	"overrides": [
+		{
+			"files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+			"rules": {
+				"simple-import-sort/imports": [
+					"error",
+					{
+						"groups": [
+							// React Packages
+							["^react"],
+
+							// davidscicluna Component Library Packages
+							["^@davidscicluna/component-library"],
+
+							// Chakra UI Packages
+							["^@chakra-ui"],
+
+							// External packages.
+							["^@?\\w"],
+
+							// Internal packages.
+							["^(@|components)(/.*|$)"],
+
+							// Side effect imports.
+							["^\\u0000"],
+
+							// Parent imports. Put `..` last.
+							["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+
+							// Other relative imports. Put same-folder imports and `.` last.
+							["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+
+							// Style imports.
+							["^.+\\.?(css)$"]
+						]
+					}
+				]
+			}
+		}
+	]
 }
