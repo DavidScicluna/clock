@@ -1,6 +1,6 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useCallback, useState } from 'react';
 
-import { useBoolean, VStack, Center, Collapse } from '@chakra-ui/react';
+import { Center, Collapse, useBoolean, VStack } from '@chakra-ui/react';
 
 import { compact, isEmpty, isNil, orderBy } from 'lodash';
 import { useInterval } from 'usehooks-ts';

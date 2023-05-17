@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IconButton, Icon } from '@davidscicluna/component-library';
+import { Icon, IconButton } from '@davidscicluna/component-library';
 
 import { HStack } from '@chakra-ui/react';
 

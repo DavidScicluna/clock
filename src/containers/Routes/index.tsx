@@ -1,6 +1,5 @@
 import { FC, lazy } from 'react';
-
-import { RouteObject, useLocation, Routes as RRDRoutes, Route } from 'react-router-dom';
+import { Route, RouteObject, Routes as RRDRoutes, useLocation } from 'react-router-dom';
 
 import { AnimatePresence } from '@davidscicluna/component-library';
 

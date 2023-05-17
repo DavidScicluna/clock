@@ -1,8 +1,8 @@
-import { FC, useState, useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 
 import { useTheme, utils } from '@davidscicluna/component-library';
 
-import { useColorMode, HStack, Text } from '@chakra-ui/react';
+import { HStack, Text, useColorMode } from '@chakra-ui/react';
 
 import { getStopwatchLabel } from '../../../../common/utils';
 

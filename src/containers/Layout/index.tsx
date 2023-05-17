@@ -1,10 +1,9 @@
-import { FC, useState, useCallback } from 'react';
-
+import { FC, useCallback, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Space, useTheme, useDebounce, TabBar, Icon, utils } from '@davidscicluna/component-library';
+import { Icon, Space, TabBar, useDebounce, useTheme, utils } from '@davidscicluna/component-library';
 
-import { VStack, Center } from '@chakra-ui/react';
+import { Center, VStack } from '@chakra-ui/react';
 
 import { useEffectOnce, useElementSize } from 'usehooks-ts';
 

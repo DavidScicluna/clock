@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect } from 'react';
 
 import { Button, Icon } from '@davidscicluna/component-library';
 
-import { useBoolean, HStack } from '@chakra-ui/react';
+import { HStack, useBoolean } from '@chakra-ui/react';
 
 import { compact, isEmpty } from 'lodash';
 

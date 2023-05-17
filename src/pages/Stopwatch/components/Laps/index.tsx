@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Divider } from '@davidscicluna/component-library';
 
-import { useBoolean, VStack, SlideFade } from '@chakra-ui/react';
+import { SlideFade, useBoolean, VStack } from '@chakra-ui/react';
 
 import { AnimatePresence } from 'framer-motion';
 import { useUpdateEffect } from 'usehooks-ts';

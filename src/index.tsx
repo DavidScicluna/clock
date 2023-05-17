@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createRoot } from 'react-dom/client';
 
+// Importing Material UI Icons
+import '@fontsource/material-icons';
+import '@fontsource/material-icons-outlined';
+
 import Container from './containers/Container';
 
 // Importing Main Fonts (Work Sans & Roboto)
@@ -47,10 +51,6 @@ import '@fontsource/roboto-mono/600.css';
 import '@fontsource/roboto-mono/600-italic.css';
 import '@fontsource/roboto-mono/700.css';
 import '@fontsource/roboto-mono/700-italic.css';
-
-// Importing Material UI Icons
-import '@fontsource/material-icons';
-import '@fontsource/material-icons-outlined';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

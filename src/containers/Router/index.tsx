@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { BrowserRouter, BrowserRouterProps as RouterProps } from 'react-router-dom';
 
 import { useEffectOnce } from 'usehooks-ts';

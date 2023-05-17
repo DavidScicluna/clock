@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useTheme, utils } from '@davidscicluna/component-library';
 
-import { useColorMode, VStack, Text } from '@chakra-ui/react';
+import { Text, useColorMode, VStack } from '@chakra-ui/react';
 
 import { LabelProps } from './types';
 

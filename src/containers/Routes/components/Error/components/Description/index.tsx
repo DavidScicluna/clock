@@ -1,6 +1,6 @@
-import { ReactElement, forwardRef } from 'react';
+import { forwardRef, ReactElement } from 'react';
 
-import { VStack, Text } from '@chakra-ui/react';
+import { Text, VStack } from '@chakra-ui/react';
 
 import { DescriptionRef } from '../../types';
 
