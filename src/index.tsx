@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import '@fontsource/material-icons';
 import '@fontsource/material-icons-outlined';
 
-import Container from './containers/Container';
+import Providers from './containers/Providers';
 
 // Importing Main Fonts (Work Sans & Roboto)
 import '@fontsource/work-sans/100.css';
@@ -55,4 +55,4 @@ import '@fontsource/roboto-mono/700-italic.css';
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
-root.render(<Container />);
+root.render(<Providers />);
