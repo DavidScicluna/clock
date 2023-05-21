@@ -1,19 +1,34 @@
 import { FC } from 'react';
 
-import Error from '../Error';
+import { Button } from '@davidscicluna/component-library';
 
-// TODO: Update these values with theme object from redux
-const color = 'blue';
-const colorMode = 'light';
+import { HStack } from '@chakra-ui/react';
+
+import Error from '../../../Error';
 
 const NoMatch: FC = () => {
 	return (
 		<Error
-			color={color}
-			colorMode={colorMode}
 			code={404}
 			title='Page not found!'
 			subtitle='Please check the URL in the address bar and try again.'
+			renderActions={(props) => (
+				<HStack>
+					{/* <InternalLink to='/' isFullWidth={isSm}>
+						<Button {...props} isFullWidth variant='outlined'>
+							Go back home
+						</Button>
+					</InternalLink> */}
+
+					<Button
+						{...props}
+						// isFullWidth={isSm}
+						onClick={() => window.location.reload()}
+					>
+						Try again
+					</Button>
+				</HStack>
+			)}
 		/>
 	);
 };
