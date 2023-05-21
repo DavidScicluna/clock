@@ -1,20 +1,34 @@
-import { FC, Suspense as RSuspense } from 'react';
+import { FC } from 'react';
 
-import { Box } from '@chakra-ui/react';
+import { Button, Suspense as DSCLSuspense } from '@davidscicluna/component-library';
 
-import ErrorBoundary from './components/ErrorBoundary';
-import { SuspenseProps } from './types';
+import Error from '../../../Error';
 
-// TODO: Add Fallback
-// TODO: Update these values with theme object from redux
-const color = 'blue';
-const colorMode = 'light';
+import { SuspenseProps } from './common/types';
 
-const Suspense: FC<SuspenseProps> = ({ children }) => {
+const Suspense: FC<SuspenseProps> = ({ children, fallback }) => {
 	return (
-		<ErrorBoundary color={color} colorMode={colorMode}>
-			<RSuspense fallback={<Box />}>{children}</RSuspense>
-		</ErrorBoundary>
+		<DSCLSuspense
+			fallback={fallback}
+			renderError={
+				<Error
+					code={404}
+					title='Oh no! 😭'
+					subtitle='Unfortunately, something went wrong when trying to render the application. Please refresh to try again!'
+					renderActions={(props) => (
+						<Button
+							{...props}
+							// isFullWidth={isSm}
+							onClick={() => window.location.reload()}
+						>
+							Refresh
+						</Button>
+					)}
+				/>
+			}
+		>
+			{children}
+		</DSCLSuspense>
 	);
 };
 
