@@ -1,41 +1,15 @@
 import { FC, lazy } from 'react';
-import { Route, RouteObject, Routes as RRDRoutes, useLocation } from 'react-router-dom';
+import { Route, Routes as RRDRoutes, useLocation } from 'react-router-dom';
 
-import { AnimatePresence } from '@davidscicluna/component-library';
+import { AnimatePresence, PageTransition } from '@davidscicluna/component-library';
 
-import Animation from './components/Animation';
 import NoMatch from './components/NoMatch';
 import Suspense from './components/Suspense';
 
-// const Alarm = lazy(() => import('../../pages/Alarm'));
+const Alarm = lazy(() => import('../../pages/Alarm'));
 const Stopwatch = lazy(() => import('../../pages/Stopwatch'));
 const Timer = lazy(() => import('../../pages/Timer'));
-// const WorldClock = lazy(() => import('../../pages/WorldClock'));
-
-export const handleReturnRoutes = (): RouteObject[] => {
-	return [
-		// {
-		// 	path: '/',
-		// 	element: <WorldClock />
-		// },
-		// {
-		// 	path: '/',
-		// 	element: <Alarm />
-		// },
-		{
-			path: '/',
-			element: <Stopwatch />
-		},
-		{
-			path: '/',
-			element: <Timer />
-		},
-		{
-			path: '*',
-			element: <NoMatch />
-		}
-	];
-};
+const WorldClock = lazy(() => import('../../pages/WorldClock'));
 
 const Routes: FC = () => {
 	const location = useLocation();
@@ -45,21 +19,33 @@ const Routes: FC = () => {
 			<RRDRoutes key={location.pathname} location={location}>
 				<Route
 					path='/'
-					// element={<WorldClock />}
+					element={
+						<Suspense>
+							<PageTransition>
+								<WorldClock />
+							</PageTransition>
+						</Suspense>
+					}
 				/>
 
 				<Route
 					path='/alarm'
-					//  element={<Alarm />}
+					element={
+						<Suspense>
+							<PageTransition>
+								<Alarm />
+							</PageTransition>
+						</Suspense>
+					}
 				/>
 
 				<Route
 					path='/stopwatch'
 					element={
 						<Suspense>
-							<Animation>
+							<PageTransition>
 								<Stopwatch />
-							</Animation>
+							</PageTransition>
 						</Suspense>
 					}
 				/>
@@ -68,9 +54,9 @@ const Routes: FC = () => {
 					path='/timer'
 					element={
 						<Suspense>
-							<Animation>
+							<PageTransition>
 								<Timer />
-							</Animation>
+							</PageTransition>
 						</Suspense>
 					}
 				/>
