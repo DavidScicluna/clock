@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { BrowserRouter, BrowserRouterProps as RouterProps } from 'react-router-dom';
 
 import { useEffectOnce } from 'usehooks-ts';
@@ -6,12 +6,12 @@ import { useEffectOnce } from 'usehooks-ts';
 const basename = import.meta.env.BASE_URL;
 
 const Router: FC<RouterProps> = ({ children }) => {
-	const handleRedirectToBasename = (): void => {
+	const handleRedirectToBasename = useCallback(() => {
 		if (!window.location.pathname.includes(basename)) {
-			window.history.replaceState('', '');
+			window.history.replaceState('', '', `${basename}${window.location.pathname}`);
 			window.location.reload();
 		}
-	};
+	}, [window, basename]);
 
 	useEffectOnce(() => handleRedirectToBasename());
 
