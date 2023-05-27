@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Badge, BadgeLabel, useDSCLProviderContext, useTheme, utils } from '@davidscicluna/component-library';
+import { Badge, BadgeLabel, useGetThemeAppearance, useTheme, utils } from '@davidscicluna/component-library';
 
 import { Center, Text, VStack } from '@chakra-ui/react';
 
@@ -11,7 +11,7 @@ const { getColor } = utils;
 const Error: FC<ErrorProps> = ({ code, title, subtitle, renderActions }) => {
 	const theme = useTheme();
 
-	const { color, colorMode } = useDSCLProviderContext();
+	const { color, colorMode } = useGetThemeAppearance();
 
 	return (
 		<Center width='100%' height='100%' minHeight='inherit'>

@@ -6,7 +6,7 @@ import {
 	Tabs,
 	TabsOnChangeProps,
 	useDebounce,
-	useDSCLProviderContext,
+	useGetThemeAppearance,
 	useTheme,
 	utils
 } from '@davidscicluna/component-library';
@@ -26,7 +26,7 @@ const { getColor } = utils;
 const StructureDesktop: FC<StructureDesktopProps> = ({ children }) => {
 	const theme = useTheme();
 
-	const { colorMode } = useDSCLProviderContext();
+	const { colorMode } = useGetThemeAppearance();
 
 	const location = useLocation();
 	const navigate = useNavigate();

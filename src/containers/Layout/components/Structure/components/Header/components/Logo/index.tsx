@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { Icon, useDSCLProviderContext, useTheme, utils } from '@davidscicluna/component-library';
+import { Icon, useGetThemeAppearance, useTheme, utils } from '@davidscicluna/component-library';
 
 import { HStack, Text } from '@chakra-ui/react';
 
@@ -11,7 +11,7 @@ const { getColor } = utils;
 const Logo: FC = () => {
 	const theme = useTheme();
 
-	const { color, colorMode } = useDSCLProviderContext();
+	const { color, colorMode } = useGetThemeAppearance();
 
 	const location = useLocation();
 

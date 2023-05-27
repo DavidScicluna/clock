@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useDSCLProviderContext, useTheme, utils } from '@davidscicluna/component-library';
+import { useGetThemeAppearance, useTheme, utils } from '@davidscicluna/component-library';
 
 import { Container, useMediaQuery } from '@chakra-ui/react';
 
@@ -12,7 +12,7 @@ const { getColor } = utils;
 const Layout: FC<LayoutProps> = ({ children }) => {
 	const theme = useTheme();
 
-	const { colorMode } = useDSCLProviderContext();
+	const { colorMode } = useGetThemeAppearance();
 
 	// const [isSm] = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
 	const [isMd] = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);

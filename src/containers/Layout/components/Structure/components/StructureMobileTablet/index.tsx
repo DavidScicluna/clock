@@ -7,7 +7,7 @@ import {
 	TabBarList,
 	TabBarOnChangeProps,
 	useDebounce,
-	useDSCLProviderContext,
+	useGetThemeAppearance,
 	useTheme,
 	utils
 } from '@davidscicluna/component-library';
@@ -27,7 +27,7 @@ const { getColor } = utils;
 const StructureMobileTablet: FC<StructureMobileTabletProps> = ({ children }) => {
 	const theme = useTheme();
 
-	const { colorMode } = useDSCLProviderContext();
+	const { colorMode } = useGetThemeAppearance();
 
 	const location = useLocation();
 	const navigate = useNavigate();
