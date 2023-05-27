@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { FontSize } from '@davidscicluna/component-library';
 
@@ -6,8 +6,8 @@ import { HStack } from '@chakra-ui/react';
 
 import { compact } from 'lodash';
 
+import { TimeLabelProps } from './common/types';
 import Label from './components/Label';
-import { TimeLabelProps } from './types';
 
 const TimeLabel: FC<TimeLabelProps> = ({ timer, options }) => {
 	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
@@ -21,7 +21,7 @@ const TimeLabel: FC<TimeLabelProps> = ({ timer, options }) => {
 	const [captionFontSize, setCaptionFontSize] = useState<FontSize>('xs');
 	const [valueFontSize, setValueFontSize] = useState<FontSize>('4xl');
 
-	const handleCheckOptions = useCallback((): void => {
+	const handleCheckOptions = (): void => {
 		const total = compact([hasHours, hasMinutes, hasSeconds, hasMilliseconds]).length;
 
 		switch (total) {
@@ -41,7 +41,7 @@ const TimeLabel: FC<TimeLabelProps> = ({ timer, options }) => {
 				break;
 			}
 		}
-	}, [options]);
+	};
 
 	useEffect(() => handleCheckOptions(), [options]);
 
