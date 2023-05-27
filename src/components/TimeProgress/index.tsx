@@ -1,20 +1,19 @@
 import { FC } from 'react';
 
-import { useTheme, utils } from '@davidscicluna/component-library';
+import { useGetThemeAppearance, useTheme, utils } from '@davidscicluna/component-library';
 
-import { CircularProgress, CircularProgressLabel, ColorMode, useColorMode, VStack } from '@chakra-ui/react';
+import { Center, CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 
-import { TimeProgressProps } from './types';
+import { TimeProgressProps } from './common/types';
 
 const { getColor } = utils;
 
 const TimeProgress: FC<TimeProgressProps> = (props) => {
 	const theme = useTheme();
-	const { colorMode: colorModeHook } = useColorMode();
 
-	const { children, color, colorMode: colorModeProp, ...rest } = props;
+	const { color, colorMode } = useGetThemeAppearance();
 
-	const colorMode: ColorMode = colorModeProp || colorModeHook;
+	const { children, ...rest } = props;
 
 	return (
 		<CircularProgress
@@ -30,9 +29,9 @@ const TimeProgress: FC<TimeProgressProps> = (props) => {
 			}}
 		>
 			<CircularProgressLabel width='75%'>
-				<VStack width='100%' spacing={0}>
+				<Center width='100%' height='100%'>
 					{children}
-				</VStack>
+				</Center>
 			</CircularProgressLabel>
 		</CircularProgress>
 	);
