@@ -47,6 +47,9 @@ const TimeLabel: FC<TimeLabelProps> = ({ timer, options }) => {
 
 	return (
 		<HStack
+			width='100%'
+			alignItems='center'
+			justifyContent='center'
 			divider={<Label caption='' captionSize={captionFontSize} value=':' valueSize={valueFontSize} />}
 			spacing={2}
 		>
