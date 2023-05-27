@@ -4,7 +4,7 @@ import { useTheme, utils } from '@davidscicluna/component-library';
 
 import { Text, useColorMode, VStack } from '@chakra-ui/react';
 
-import { LabelProps } from './types';
+import { LabelProps } from './common/types';
 
 const { getColor } = utils;
 
