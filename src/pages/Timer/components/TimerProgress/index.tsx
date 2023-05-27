@@ -1,24 +1,23 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
+// TODO: Replace all useBoolean & useConst to use the ds cl ones
 import { useBoolean } from '@chakra-ui/react';
 
 import { checkTimer } from '../../../../common/utils';
 import TimeLabel from '../../../../components/TimeLabel';
 import TimeProgress from '../../../../components/TimeProgress';
+import { Timer } from '../../common/types';
 import { getTimerFromSeconds } from '../../common/utils';
-import { Timer } from '../../types';
 
-import { ProgressProps } from './types';
+import { TimerProgressProps } from './common/types';
 
-const color = 'blue';
-
-const Progress: FC<ProgressProps> = ({ elapsed = 0, total = 0 }) => {
+const TimerProgress: FC<TimerProgressProps> = ({ elapsed = 0, total = 0 }) => {
 	const [elapsedTimer, setElapsedTimer] = useState<Timer>(getTimerFromSeconds({ seconds: total }));
 
 	const [hasHours, setHasHours] = useBoolean();
 	const [hasMinutes, setHasMinutes] = useBoolean();
 
-	const handleCheck = useCallback((): void => {
+	const handleCheck = (): void => {
 		const totalTimer = getTimerFromSeconds({ seconds: total });
 		const has = checkTimer({ ...totalTimer, milliseconds: 0 });
 
@@ -35,29 +34,18 @@ const Progress: FC<ProgressProps> = ({ elapsed = 0, total = 0 }) => {
 		}
 
 		setElapsedTimer(getTimerFromSeconds({ seconds: elapsed }));
-	}, [elapsed]);
+	};
 
 	useEffect(() => handleCheck(), [elapsed]);
 
 	return (
-		<TimeProgress color={color} min={0} max={total} value={elapsed}>
+		<TimeProgress min={0} max={total} value={elapsed}>
 			<TimeLabel
 				timer={{ ...elapsedTimer, milliseconds: 0 }}
 				options={{ hours: hasHours, minutes: hasMinutes, milliseconds: false }}
 			/>
-
-			{/* Add Badge showing when timer will be completed */}
-			{/* <Text
-				align='center'
-				color={getColor({ theme, colorMode, type: 'text.secondary' })}
-				fontSize='xl'
-				whiteSpace='nowrap'
-				userSelect='none'
-			>
-				{time}
-			</Text> */}
 		</TimeProgress>
 	);
 };
 
-export default Progress;
+export default TimerProgress;

@@ -1,4 +1,4 @@
-export type ProgressProps = {
+export type TimerProgressProps = {
 	elapsed: number;
 	total: number;
 };
