@@ -1,9 +1,10 @@
 import { FC } from 'react';
 
-import { useDSCLProviderContext, useTheme, utils } from '@davidscicluna/component-library';
+import { useGetThemeAppearance, useTheme, utils } from '@davidscicluna/component-library';
 
 import { HStack } from '@chakra-ui/react';
 
+import ColorPicker from './components/ColorPicker';
 import Logo from './components/Logo';
 import ToggleColorMode from './components/ToggleColorMode';
 
@@ -12,7 +13,7 @@ const { getColor } = utils;
 const Header: FC = () => {
 	const theme = useTheme();
 
-	const { colorMode } = useDSCLProviderContext();
+	const { colorMode } = useGetThemeAppearance();
 
 	return (
 		<HStack
@@ -27,7 +28,11 @@ const Header: FC = () => {
 			p={2}
 		>
 			<Logo />
-			<ToggleColorMode />
+
+			<HStack spacing={0}>
+				<ColorPicker />
+				<ToggleColorMode />
+			</HStack>
 		</HStack>
 	);
 };
