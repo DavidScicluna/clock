@@ -1,29 +1,13 @@
-import { AppColor, AppColors, AppFullColorMode, defaults } from '@davidscicluna/component-library';
+import { AppColor, AppFullColorMode, defaults } from '@davidscicluna/component-library';
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { sample } from 'lodash';
 
+import colors from '../../../common/data/colors';
+
 import { AppStateProps, AppTheme } from './common/types';
 
 const { defaultColor, defaultColorMode } = defaults.props;
-
-const colors: AppColors = [
-	'red',
-	'pink',
-	'purple',
-	'deep_purple',
-	'indigo',
-	'blue',
-	'light_blue',
-	'cyan',
-	'teal',
-	'green',
-	'light_green',
-	'lime',
-	'yellow',
-	'orange',
-	'deep_orange'
-];
 
 const initialState: AppStateProps = {
 	ui: {
