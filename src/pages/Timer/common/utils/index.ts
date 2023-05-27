@@ -1,6 +1,6 @@
 import { memoize } from 'lodash';
 
-import { Timer } from '../../types';
+import { Timer } from '../types';
 
 export const getSecondsFromTimer = memoize(({ hours = 0, minutes = 0, seconds = 0 }: Timer): number => {
 	let s = seconds;

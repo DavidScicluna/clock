@@ -1,19 +1,21 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 
-import { Center, Fade, VStack } from '@chakra-ui/react';
+import { Fade } from '@davidscicluna/component-library';
+
+import { Center, VStack } from '@chakra-ui/react';
 
 import { AnimatePresence } from 'framer-motion';
 import { useCountdown, useUpdateEffect } from 'usehooks-ts';
 
+import { Status } from './common/types';
 import { getSecondsFromTimer } from './common/utils';
-import Actions from './components/Actions';
-import Pick from './components/Pick';
-import { PickType } from './components/Pick/types';
-import Progress from './components/Progress';
-import { Status } from './types';
+import PickTimer from './components/PickTimer';
+import { PickTimerOnPickProps } from './components/PickTimer/common/types';
+import TimerControls from './components/TimerControls';
+import TimerProgress from './components/TimerProgress';
 
 const Timer: FC = () => {
-	const [status, setStatus] = useState<Status>('pick');
+	const [status, setStatus] = useState<Status>('picker');
 
 	const [hoursPicked, setHoursPicked] = useState<number>(0);
 	const [minutesPicked, setMinutesPicked] = useState<number>(0);
@@ -31,7 +33,7 @@ const Timer: FC = () => {
 		setTotalSeconds(getSecondsFromTimer({ hours: hoursPicked, minutes: minutesPicked, seconds: secondsPicked }));
 	}, [hoursPicked, minutesPicked, secondsPicked]);
 
-	const handleItemClick = useCallback((type: PickType, num: number): void => {
+	const handleItemClick = useCallback(({ type, num }: PickTimerOnPickProps): void => {
 		switch (type) {
 			case 'hours':
 				setHoursPicked(num <= 0 ? 0 : num >= 23 ? 23 : num);
@@ -58,7 +60,7 @@ const Timer: FC = () => {
 	const handleReset = useCallback((): void => {
 		onReset();
 
-		setStatus('pick');
+		setStatus('picker');
 	}, []);
 
 	const handleResumePause = useCallback((): void => {
@@ -83,7 +85,7 @@ const Timer: FC = () => {
 		if (elapsed === 0) {
 			onStop();
 
-			setStatus('pick');
+			setStatus('picker');
 
 			setTimeout(() => onReset(), 250);
 		}
@@ -97,25 +99,25 @@ const Timer: FC = () => {
 
 	return (
 		<Center width='100%' height='100%' p={4}>
-			<VStack align='center' justify='center' spacing={status === 'pick' ? 6 : 2}>
+			<VStack align='center' justify='center' spacing={2}>
 				<AnimatePresence>
-					{status === 'pick' ? (
-						<Fade in unmountOnExit>
-							<Pick
+					{status === 'picker' ? (
+						<Fade in>
+							<PickTimer
 								hours={hoursPicked}
 								minutes={minutesPicked}
 								seconds={secondsPicked}
-								onItemClick={handleItemClick}
+								onPick={handleItemClick}
 							/>
 						</Fade>
 					) : (
-						<Fade in unmountOnExit>
-							<Progress elapsed={elapsed} total={totalSeconds} />
+						<Fade in>
+							<TimerProgress elapsed={elapsed} total={totalSeconds} />
 						</Fade>
 					)}
 				</AnimatePresence>
 
-				<Actions
+				<TimerControls
 					status={status}
 					pickedTimer={{ hours: hoursPicked, minutes: minutesPicked, seconds: secondsPicked }}
 					onClear={handleClear}
