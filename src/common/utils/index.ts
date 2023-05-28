@@ -1,10 +1,8 @@
 import { compact, memoize } from 'lodash';
 
-import { Timer } from '../types';
+import { Timer, TimerTypeFull, TimerTypeShort } from '../types';
 
-type TimerKeys = keyof Timer;
-
-type CheckTimerReturn = { [key in TimerKeys]: boolean };
+type CheckTimerReturn = { [key in TimerTypeFull]: boolean };
 
 export const checkTimer = memoize((timer: Timer): CheckTimerReturn => {
 	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
@@ -41,7 +39,7 @@ export const checkTimer = memoize((timer: Timer): CheckTimerReturn => {
 	return { hours: hasHours, minutes: hasMinutes, seconds: hasSeconds, milliseconds: hasMilliseconds };
 });
 
-type TimerOptions = { [key in TimerKeys]: boolean };
+type TimerOptions = { [key in TimerTypeFull]: boolean };
 
 export const getLabel = memoize((timer: Partial<Timer>, options?: Partial<TimerOptions>): string => {
 	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
@@ -83,3 +81,18 @@ export const getLabel = memoize((timer: Partial<Timer>, options?: Partial<TimerO
 export const getTimerValue = memoize((timer: Partial<Timer>, options?: Partial<TimerOptions>): number =>
 	Number(getLabel({ ...timer }, { ...options }).replaceAll(/:/g, ''))
 );
+
+type FormatTimerTypeProps = { type: TimerTypeShort; format: 'full' | 'short' };
+
+export const formatTimerType = memoize(({ type, format }: FormatTimerTypeProps): string => {
+	switch (type) {
+		case 'h':
+			return format === 'full' ? 'Hour' : 'Hr';
+		case 'm':
+			return format === 'full' ? 'Minute' : 'Min';
+		case 's':
+			return format === 'full' ? 'Second' : 'Sec';
+		case 'ms':
+			return format === 'full' ? 'Millisecond' : 'Ms';
+	}
+});
