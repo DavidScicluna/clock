@@ -7,10 +7,11 @@ import { Center, VStack } from '@chakra-ui/react';
 import { AnimatePresence } from 'framer-motion';
 import { useCountdown, useUpdateEffect } from 'usehooks-ts';
 
+import TimePicker from '../../components/TimePicker';
+import { TimePickerOnPickProps } from '../../components/TimePicker/common/types';
+
 import { Status } from './common/types';
 import { getSecondsFromTimer } from './common/utils';
-import PickTimer from './components/PickTimer';
-import { PickTimerOnPickProps } from './components/PickTimer/common/types';
 import TimerControls from './components/TimerControls';
 import TimerProgress from './components/TimerProgress';
 
@@ -33,16 +34,16 @@ const Timer: FC = () => {
 		setTotalSeconds(getSecondsFromTimer({ hours: hoursPicked, minutes: minutesPicked, seconds: secondsPicked }));
 	}, [hoursPicked, minutesPicked, secondsPicked]);
 
-	const handleItemClick = useCallback(({ type, num }: PickTimerOnPickProps): void => {
+	const handleItemClick = useCallback(({ type, value }: TimePickerOnPickProps): void => {
 		switch (type) {
-			case 'hours':
-				setHoursPicked(num <= 0 ? 0 : num >= 23 ? 23 : num);
+			case 'h':
+				setHoursPicked(value <= 0 ? 0 : value >= 23 ? 23 : value);
 				break;
-			case 'minutes':
-				setMinutesPicked(num <= 0 ? 0 : num >= 59 ? 59 : num);
+			case 'm':
+				setMinutesPicked(value <= 0 ? 0 : value >= 59 ? 59 : value);
 				break;
-			case 'seconds':
-				setSecondsPicked(num <= 0 ? 0 : num >= 59 ? 59 : num);
+			case 's':
+				setSecondsPicked(value <= 0 ? 0 : value >= 59 ? 59 : value);
 				break;
 		}
 	}, []);
@@ -103,12 +104,17 @@ const Timer: FC = () => {
 				<AnimatePresence>
 					{status === 'picker' ? (
 						<Fade in>
-							<PickTimer
-								hours={hoursPicked}
-								minutes={minutesPicked}
-								seconds={secondsPicked}
-								onPick={handleItemClick}
-							/>
+							<Center width='50vw' alignItems='stretch' justifyContent='stretch'>
+								<TimePicker
+									onPick={handleItemClick}
+									options={{
+										h: { minValue: 0, maxValue: 23, value: hoursPicked },
+										m: { minValue: 0, maxValue: 59, value: minutesPicked },
+										s: { minValue: 0, maxValue: 59, value: secondsPicked }
+									}}
+									size='xl'
+								/>
+							</Center>
 						</Fade>
 					) : (
 						<Fade in>
