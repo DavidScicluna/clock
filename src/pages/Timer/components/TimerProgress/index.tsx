@@ -27,8 +27,12 @@ const TimerProgress: FC<TimerProgressProps> = ({ status, elapsed = 0, total = 0 
 	const [date, setDate] = useState<Dayjs>(dayjs(new Date()).add(hours, 'h').add(minutes, 'm').add(seconds, 's'));
 
 	const handleCheck = (): void => {
-		const totalTimer = getTimerFromSeconds({ seconds: total });
-		const { hours: hasHours = false, minutes: hasMinutes = false } = checkTimer({ ...totalTimer, milliseconds: 0 });
+		const elapsedTimer = getTimerFromSeconds({ seconds: elapsed });
+
+		const { hours: hasHours = false, minutes: hasMinutes = false } = checkTimer({
+			...elapsedTimer,
+			milliseconds: 0
+		});
 
 		if (hasHours) {
 			setHasHours.on();
@@ -42,7 +46,7 @@ const TimerProgress: FC<TimerProgressProps> = ({ status, elapsed = 0, total = 0 
 			setHasMinutes.off();
 		}
 
-		setElapsedTimer(getTimerFromSeconds({ seconds: elapsed }));
+		setElapsedTimer(elapsedTimer);
 	};
 
 	const handleDate = (): void => {
