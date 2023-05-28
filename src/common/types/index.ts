@@ -1,6 +1,4 @@
-export type Timer = {
-	hours: number;
-	minutes: number;
-	seconds: number;
-	milliseconds: number;
-};
+export type TimerTypeShort = 'h' | 'm' | 's' | 'ms';
+export type TimerTypeFull = 'hours' | 'minutes' | 'seconds' | 'milliseconds';
+
+export type Timer = Record<TimerTypeFull, number>;
