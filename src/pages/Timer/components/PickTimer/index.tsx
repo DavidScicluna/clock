@@ -7,7 +7,7 @@ import Picker from './components/Picker';
 
 const PickTimer: FC<PickTimerProps> = ({ hours, minutes, seconds, onPick }) => {
 	return (
-		<HStack width='100%' align='center' justify='center' spacing={2}>
+		<HStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={2}>
 			<Picker
 				caption='Hours'
 				minValue={0}

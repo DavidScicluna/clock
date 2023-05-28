@@ -39,7 +39,7 @@ const Lap: FC<LapProps> = (props) => {
 	useEffect(() => handleSetColor(), [status]);
 
 	return (
-		<HStack width='100%' justify='space-between'>
+		<HStack width='100%' justifyContent='space-between'>
 			<Text align='left' color={color} fontSize='lg' fontWeight='medium'>
 				{`Lap ${index}`}
 			</Text>

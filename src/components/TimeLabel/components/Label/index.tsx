@@ -15,7 +15,7 @@ const Label: FC<LabelProps> = (props) => {
 	const { caption, captionSize = 'xs', value, valueSize = '4xl' } = props;
 
 	return (
-		<VStack align='center' justify='center' spacing={0}>
+		<VStack alignItems='center' justifyContent='center' spacing={0}>
 			<Text
 				align='center'
 				color={getColor({ theme, colorMode, type: 'text.secondary' })}

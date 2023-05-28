@@ -99,7 +99,7 @@ const Timer: FC = () => {
 
 	return (
 		<Center width='100%' height='100%' p={4}>
-			<VStack align='center' justify='center' spacing={4}>
+			<VStack alignItems='center' justifyContent='center' spacing={4}>
 				<AnimatePresence>
 					{status === 'picker' ? (
 						<Fade in>

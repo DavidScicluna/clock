@@ -123,8 +123,8 @@ const Stopwatch: FC = () => {
 
 	return (
 		<Center width='100%' height='100%' p={4}>
-			<VStack height='100%' align='center' justify='center' spacing={4}>
-				<VStack width='100%' align='center' justify='center' spacing={2}>
+			<VStack height='100%' alignItems='center' justifyContent='center' spacing={4}>
+				<VStack width='100%' alignItems='center' justifyContent='center' spacing={2}>
 					<Progress timer={{ hours, minutes, seconds, milliseconds }} />
 
 					<Actions

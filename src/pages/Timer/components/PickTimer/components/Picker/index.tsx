@@ -9,7 +9,7 @@ import PickerLabel from './components/PickerLabel';
 
 const Picker: FC<PickerProps> = ({ caption, minValue, maxValue, onPick, value = 0 }) => {
 	return (
-		<VStack align='center' justify='center' spacing={2}>
+		<VStack alignItems='center' justifyContent='space-between' spacing={2}>
 			<PickerCaption>{caption}</PickerCaption>
 
 			<PickerArrows type='add' isDisabled={value >= maxValue} onPick={(count) => onPick(value + count)} />
