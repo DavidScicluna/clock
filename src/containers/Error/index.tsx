@@ -15,21 +15,21 @@ const Error: FC<ErrorProps> = ({ code, title, subtitle, renderActions }) => {
 
 	return (
 		<Center width='100%' height='100%' minHeight='inherit'>
-			<VStack alignItems='center' justifyContent='center' spacing={2}>
-				<Badge color={color} variant='light'>
+			<VStack alignItems='center' justifyContent='center' spacing={6} p={4}>
+				<Badge color={color} size='sm' variant='light'>
 					<BadgeLabel textTransform='uppercase'>{`Error ${code}`}</BadgeLabel>
 				</Badge>
 
-				<VStack alignItems='center' justifyContent='center' spacing={0.5}>
+				<VStack width='75%' alignItems='center' justifyContent='center' spacing={0.5}>
 					<Text
-						align='left'
+						align='center'
 						color={getColor({ theme, colorMode, type: 'text.primary' })}
 						fontSize='4xl'
 						fontWeight='bold'
 					>
 						{title}
 					</Text>
-					<Text align='left' color={getColor({ theme, colorMode, type: 'text.secondary' })} fontSize='md'>
+					<Text align='center' color={getColor({ theme, colorMode, type: 'text.secondary' })} fontSize='md'>
 						{subtitle}
 					</Text>
 				</VStack>
