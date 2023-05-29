@@ -14,7 +14,7 @@ const TimerTypeCaption: FC<TimerTypeCaptionProps> = ({ children, ...rest }) => {
 			{...rest}
 			align='center'
 			color={color}
-			fontSize={['xl']}
+			fontSize={['md', 'xl']}
 			fontWeight='bold'
 			lineHeight='normal'
 			textTransform='uppercase'
