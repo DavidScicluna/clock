@@ -35,11 +35,13 @@ const TimePickerLabel: FC<TimePickerLabelProps> = ({ types, values }) => {
 				width='100%'
 				alignItems='stretch'
 				justifyContent='space-evenly'
-				divider={<TimePickerLabelNumber>:</TimePickerLabelNumber>}
+				divider={<TimePickerLabelNumber lineHeight={1}>:</TimePickerLabelNumber>}
 				spacing={spacing}
 			>
 				{values.map((value, index) => (
-					<TimePickerLabelNumber key={index}>{value < 10 ? `0${value}` : value}</TimePickerLabelNumber>
+					<TimePickerLabelNumber key={index} width='100%' lineHeight='normal'>
+						{value < 10 ? `0${value}` : value}
+					</TimePickerLabelNumber>
 				))}
 			</HStack>
 
