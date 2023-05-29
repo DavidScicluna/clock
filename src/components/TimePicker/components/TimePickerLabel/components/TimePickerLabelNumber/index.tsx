@@ -6,11 +6,11 @@ import { Text } from '@chakra-ui/react';
 
 import { TimePickerLabelNumberProps } from './common/types';
 
-const TimePickerLabelNumber: FC<TimePickerLabelNumberProps> = ({ children }) => {
+const TimePickerLabelNumber: FC<TimePickerLabelNumberProps> = ({ children, ...rest }) => {
 	const color = useGetColor({ color: 'gray', type: 'text.primary' });
 
 	return (
-		<Text align='center' color={color} fontSize={['8xl']} fontWeight='semibold' lineHeight='normal'>
+		<Text {...rest} align='center' color={color} fontSize={['7xl', '8xl']} fontWeight='semibold'>
 			{children}
 		</Text>
 	);
