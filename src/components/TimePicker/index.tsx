@@ -24,7 +24,7 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 
 	return (
 		<VStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={spacing}>
-			<HStack width='100%' alignItems='center' justifyContent='space-evenly' spacing={spacing}>
+			<HStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={0} px={spacing}>
 				{timerTypes.map((type) => {
 					const option = options ? options[type] : undefined;
 					return (
@@ -48,7 +48,7 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 				})}
 			/>
 
-			<HStack width='100%' alignItems='center' justifyContent='space-evenly' spacing={spacing}>
+			<HStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={0} px={spacing}>
 				{timerTypes.map((type) => {
 					const option = options ? options[type] : undefined;
 					return (
