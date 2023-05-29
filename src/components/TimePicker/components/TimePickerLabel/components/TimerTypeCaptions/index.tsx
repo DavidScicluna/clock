@@ -18,7 +18,9 @@ const TimerTypeCaptions: FC<TimerTypeCaptionsProps> = ({ types = [] }) => {
 			spacing={spacing}
 		>
 			{types.map((type) => (
-				<TimerTypeCaption key={type}>{formatTimerType({ type, format: 'short' })}</TimerTypeCaption>
+				<TimerTypeCaption key={type} width='100%'>
+					{formatTimerType({ type, format: 'short' })}
+				</TimerTypeCaption>
 			))}
 		</HStack>
 	);
