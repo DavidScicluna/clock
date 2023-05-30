@@ -1,72 +1,66 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
-import { FontSize } from '@davidscicluna/component-library';
+import { useGetColor, useGetThemeAppearance } from '@davidscicluna/component-library';
 
-import { HStack } from '@chakra-ui/react';
+import { HStack, VStack } from '@chakra-ui/react';
 
-import { compact } from 'lodash';
+import { spacing } from '../TimePicker';
 
 import { TimeLabelProps } from './common/types';
-import Label from './components/Label';
+import TimeLabelCaptions from './components/TimeLabelCaptions';
+import TimeLabelNumber from './components/TimeLabelNumber';
 
-const TimeLabel: FC<TimeLabelProps> = ({ timer, options }) => {
-	const { hours = 0, minutes = 0, seconds = 0, milliseconds = 0 } = timer;
-	const {
-		hours: hasHours = true,
-		minutes: hasMinutes = true,
-		seconds: hasSeconds = true,
-		milliseconds: hasMilliseconds = true
-	} = options || {};
+const TimeLabel: FC<TimeLabelProps> = ({ types, timer }) => {
+	const { colorMode } = useGetThemeAppearance();
 
-	const [captionFontSize, setCaptionFontSize] = useState<FontSize>('xs');
-	const [valueFontSize, setValueFontSize] = useState<FontSize>('4xl');
+	const { hours, minutes, seconds, milliseconds } = timer;
 
-	const handleCheckOptions = (): void => {
-		const total = compact([hasHours, hasMinutes, hasSeconds, hasMilliseconds]).length;
-
-		switch (total) {
-			case 4: {
-				setCaptionFontSize('sm');
-				setValueFontSize('4xl');
-				break;
-			}
-			case 3: {
-				setCaptionFontSize('md');
-				setValueFontSize('5xl');
-				break;
-			}
-			default: {
-				setCaptionFontSize('xl');
-				setValueFontSize('7xl');
-				break;
-			}
-		}
-	};
-
-	useEffect(() => handleCheckOptions(), [options]);
+	const background = useGetColor({ color: 'gray', type: colorMode === 'light' ? 'lighter' : 'darker' });
+	const borderColor = useGetColor({ color: 'gray', type: 'divider' });
 
 	return (
-		<HStack
+		<VStack
 			width='100%'
-			alignItems='center'
-			justifyContent='center'
-			divider={<Label caption='' captionSize={captionFontSize} value=':' valueSize={valueFontSize} />}
-			spacing={2}
+			alignItems='stretch'
+			justifyContent='space-between'
+			background={background}
+			borderWidth='2px'
+			borderColor={borderColor}
+			borderStyle='solid'
+			borderRadius='base'
+			spacing={spacing}
+			p={spacing}
 		>
-			{hasHours && <Label caption='hr' captionSize={captionFontSize} value={hours} valueSize={valueFontSize} />}
+			<TimeLabelCaptions types={types} />
 
-			{hasMinutes && (
-				<Label caption='min' captionSize={captionFontSize} value={minutes} valueSize={valueFontSize} />
-			)}
+			<HStack
+				width='100%'
+				alignItems='stretch'
+				justifyContent='space-evenly'
+				divider={<TimeLabelNumber lineHeight={1}>:</TimeLabelNumber>}
+				spacing={spacing}
+			>
+				{types.map((type, index) => {
+					const time =
+						type === 'h' && hours
+							? hours
+							: type === 'm' && minutes
+							? minutes
+							: type === 's' && seconds
+							? seconds
+							: type === 'ms' && milliseconds
+							? milliseconds
+							: 0;
+					return (
+						<TimeLabelNumber key={index} width='100%' lineHeight='normal'>
+							{time}
+						</TimeLabelNumber>
+					);
+				})}
+			</HStack>
 
-			{hasSeconds && (
-				<Label caption='sec' captionSize={captionFontSize} value={seconds} valueSize={valueFontSize} />
-			)}
-
-			{hasMilliseconds && (
-				<Label caption='ms' captionSize={captionFontSize} value={milliseconds} valueSize={valueFontSize} />
-			)}
-		</HStack>
+			<TimeLabelCaptions types={types} />
+		</VStack>
 	);
 };
 
