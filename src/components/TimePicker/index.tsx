@@ -7,10 +7,10 @@ import { HStack, VStack } from '@chakra-ui/react';
 import { compact } from 'lodash';
 
 import { TimerTypeShort } from '../../common/types';
+import TimePickerLabel from '../TimeLabel';
 
 import { TimePickerProps } from './common/types';
 import TimePickerControls from './components/TimePickerControls';
-import TimePickerLabel from './components/TimePickerLabel';
 
 export const spacing: Space = 2;
 
@@ -32,7 +32,7 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 							key={type}
 							type={type}
 							mode='add'
-							isDisabled={option ? option.value >= option.maxValue : false}
+							isDisabled={option ? option.value >= option.max : false}
 							onPick={option ? (count) => onPick({ type, value: option.value + count }) : undefined}
 							size={size}
 						/>
@@ -42,10 +42,12 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 
 			<TimePickerLabel
 				types={timerTypes}
-				values={timerTypes.map((type) => {
-					const option = options ? options[type] : undefined;
-					return option ? option.value : 0;
-				})}
+				timer={{
+					hours: options && options.h ? options.h.value : undefined,
+					minutes: options && options.m ? options.m.value : undefined,
+					seconds: options && options.s ? options.s.value : undefined,
+					milliseconds: options && options.ms ? options.ms.value : undefined
+				}}
 			/>
 
 			<HStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={0} px={spacing}>
@@ -56,7 +58,7 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 							key={type}
 							type={type}
 							mode='subtract'
-							isDisabled={option ? option.value <= option.minValue : false}
+							isDisabled={option ? option.value <= option.min : false}
 							onPick={option ? (count) => onPick({ type, value: option.value - count }) : undefined}
 							size={size}
 						/>
