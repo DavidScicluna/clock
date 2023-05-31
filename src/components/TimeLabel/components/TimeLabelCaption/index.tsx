@@ -14,7 +14,7 @@ const TimeLabelCaption: FC<TimeLabelCaptionProps> = ({ children, ...rest }) => {
 			{...rest}
 			align='center'
 			color={color}
-			fontSize={['md', 'xl']}
+			fontSize={['sm', 'md', 'lg', 'xl']}
 			fontWeight='bold'
 			lineHeight='normal'
 			textTransform='uppercase'
