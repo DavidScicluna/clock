@@ -4,13 +4,16 @@ import { useGetColor, useGetThemeAppearance } from '@davidscicluna/component-lib
 
 import { HStack, VStack } from '@chakra-ui/react';
 
+import { formatTimerNumber } from '../../common/utils';
 import { spacing } from '../TimePicker';
 
+import { isLive as defaultIsLive } from './common/default/props';
 import { TimeLabelProps } from './common/types';
 import TimeLabelCaptions from './components/TimeLabelCaptions';
 import TimeLabelNumber from './components/TimeLabelNumber';
+import TimeLabelNumberDivider from './components/TimeLabelNumberDivider';
 
-const TimeLabel: FC<TimeLabelProps> = ({ types, timer }) => {
+const TimeLabel: FC<TimeLabelProps> = ({ timerTypes, timer, isLive = defaultIsLive }) => {
 	const { colorMode } = useGetThemeAppearance();
 
 	const { hours, minutes, seconds, milliseconds } = timer;
@@ -31,16 +34,16 @@ const TimeLabel: FC<TimeLabelProps> = ({ types, timer }) => {
 			spacing={spacing}
 			p={spacing}
 		>
-			<TimeLabelCaptions types={types} />
+			<TimeLabelCaptions timerTypes={timerTypes} />
 
 			<HStack
 				width='100%'
 				alignItems='stretch'
 				justifyContent='space-evenly'
-				divider={<TimeLabelNumber lineHeight={1}>:</TimeLabelNumber>}
+				divider={<TimeLabelNumberDivider timerTypes={timerTypes} isLive={isLive} />}
 				spacing={spacing}
 			>
-				{types.map((type, index) => {
+				{timerTypes.map((type, index) => {
 					const time =
 						type === 'h' && hours
 							? hours
@@ -52,14 +55,14 @@ const TimeLabel: FC<TimeLabelProps> = ({ types, timer }) => {
 							? milliseconds
 							: 0;
 					return (
-						<TimeLabelNumber key={index} width='100%' lineHeight='normal'>
-							{time}
+						<TimeLabelNumber key={index} width='100%' lineHeight='normal' timerTypes={timerTypes}>
+							{formatTimerNumber(time)}
 						</TimeLabelNumber>
 					);
 				})}
 			</HStack>
 
-			<TimeLabelCaptions types={types} />
+			<TimeLabelCaptions timerTypes={timerTypes} />
 		</VStack>
 	);
 };

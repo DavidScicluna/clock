@@ -1,6 +1,7 @@
-import { Timer, TimerTypeShort } from '../../../../common/types';
+import { Timer, TimerTypesShort } from '../../../../common/types';
 
 export type TimeLabelProps = {
-	types: TimerTypeShort[];
+	timerTypes: TimerTypesShort;
 	timer: Partial<Timer>;
+	isLive?: boolean;
 };
