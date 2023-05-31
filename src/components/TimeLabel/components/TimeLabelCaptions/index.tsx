@@ -8,7 +8,7 @@ import TimeLabelCaption from '../TimeLabelCaption';
 
 import { TimeLabelCaptionsProps } from './common/types';
 
-const TimeLabelCaptions: FC<TimeLabelCaptionsProps> = ({ types = [] }) => {
+const TimeLabelCaptions: FC<TimeLabelCaptionsProps> = ({ timerTypes = [] }) => {
 	return (
 		<HStack
 			width='100%'
@@ -17,9 +17,9 @@ const TimeLabelCaptions: FC<TimeLabelCaptionsProps> = ({ types = [] }) => {
 			divider={<TimeLabelCaption sx={{ opacity: 0 }}>-</TimeLabelCaption>}
 			spacing={spacing}
 		>
-			{types.map((type) => (
+			{timerTypes.map((type) => (
 				<TimeLabelCaption key={type} width='100%'>
-					{formatTimerType({ type, format: 'short' })}
+					{formatTimerType({ timerType: type, format: 'short' })}
 				</TimeLabelCaption>
 			))}
 		</HStack>

@@ -1,5 +1,3 @@
-import { TimerTypeShort } from '../../../../../../common/types';
+import { TimeLabelProps } from '../../../../common/types';
 
-export type TimeLabelCaptionsProps = {
-	types: TimerTypeShort[];
-};
+export type TimeLabelCaptionsProps = Pick<TimeLabelProps, 'timerTypes'>;
