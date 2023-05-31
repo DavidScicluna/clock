@@ -6,7 +6,7 @@ import { HStack, VStack } from '@chakra-ui/react';
 
 import { compact } from 'lodash';
 
-import { TimerTypeShort } from '../../common/types';
+import { TimerTypesShort } from '../../common/types';
 import TimePickerLabel from '../TimeLabel';
 
 import { TimePickerProps } from './common/types';
@@ -14,12 +14,12 @@ import TimePickerControls from './components/TimePickerControls';
 
 export const spacing: Space = 2;
 
-const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
-	const [timerTypes, setTimerTypes] = useState<TimerTypeShort[]>([]);
+const TimePicker: FC<TimePickerProps> = ({ options, onPick, size }) => {
+	const [timerTypes, setTimerTypes] = useState<TimerTypesShort>([]);
 
 	useEffect(() => {
 		const { h, m, s, ms } = options || {};
-		setTimerTypes(compact([h ? 'h' : null, m ? 'm' : null, s ? 's' : null, ms ? 'ms' : null]) as TimerTypeShort[]);
+		setTimerTypes(compact([h ? 'h' : null, m ? 'm' : null, s ? 's' : null, ms ? 'ms' : null]) as TimerTypesShort);
 	}, [options]);
 
 	return (
@@ -30,10 +30,12 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 					return (
 						<TimePickerControls
 							key={type}
-							type={type}
+							timerType={type}
 							mode='add'
 							isDisabled={option ? option.value >= option.max : false}
-							onPick={option ? (count) => onPick({ type, value: option.value + count }) : undefined}
+							onPick={
+								option ? (count) => onPick({ timerType: type, value: option.value + count }) : undefined
+							}
 							size={size}
 						/>
 					);
@@ -41,7 +43,7 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 			</HStack>
 
 			<TimePickerLabel
-				types={timerTypes}
+				timerTypes={timerTypes}
 				timer={{
 					hours: options && options.h ? options.h.value : undefined,
 					minutes: options && options.m ? options.m.value : undefined,
@@ -56,10 +58,12 @@ const TimePicker: FC<TimePickerProps> = ({ onPick, options, size }) => {
 					return (
 						<TimePickerControls
 							key={type}
-							type={type}
+							timerType={type}
 							mode='subtract'
 							isDisabled={option ? option.value <= option.min : false}
-							onPick={option ? (count) => onPick({ type, value: option.value - count }) : undefined}
+							onPick={
+								option ? (count) => onPick({ timerType: type, value: option.value - count }) : undefined
+							}
 							size={size}
 						/>
 					);

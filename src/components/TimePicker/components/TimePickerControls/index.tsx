@@ -16,8 +16,8 @@ import { formatTimerType } from '../../../../common/utils';
 
 import { TimePickerControlsProps } from './common/types';
 
-const TimePickerControls: FC<TimePickerControlsProps> = ({ type, mode, isDisabled = true, onPick, size }) => {
-	const fullType = useConst(formatTimerType({ type, format: 'full' }));
+const TimePickerControls: FC<TimePickerControlsProps> = ({ timerType, mode, isDisabled = true, onPick, size }) => {
+	const fullType = useConst(formatTimerType({ timerType, format: 'full' }));
 
 	return (
 		<Center width='100%'>
