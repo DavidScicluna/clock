@@ -1,51 +1,42 @@
 import { FC, useCallback, useState } from 'react';
 
-import { Center, Collapse, useBoolean, VStack } from '@chakra-ui/react';
+import { Space, useGetColor } from '@davidscicluna/component-library';
 
-import { compact, isEmpty, isNil, orderBy } from 'lodash';
-import { useInterval } from 'usehooks-ts';
+import { Center, Container, VStack } from '@chakra-ui/react';
+
+import { isNil, orderBy } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
 import { getTimerValue } from '../../common/utils';
 
-import { updateStopwatch } from './common/utils';
-import Actions from './components/Actions';
-import Laps from './components/Laps';
-import { Lap } from './components/Laps/components/Lap/types';
-import Progress from './components/Progress';
+import { useStopwatch } from './common/hooks';
+import StopwatchControls from './components/StopwatchControls';
+import StopwatchLaps from './components/StopwatchLaps';
+import { Lap } from './components/StopwatchLaps/components/StopwatchLap/common/types';
+import StopwatchProgress from './components/StopwatchProgress';
+
+const spacing: Space = 4;
 
 const Stopwatch: FC = () => {
-	const [hasStarted, setHasStarted] = useBoolean();
-
-	const [hours, setHours] = useState<number>(0);
-	const [minutes, setMinutes] = useState<number>(0);
-	const [seconds, setSeconds] = useState<number>(0);
-	const [milliseconds, setMilliseconds] = useState<number>(0);
+	const [timer, hasStarted, { onStart, onStop, onReset }] = useStopwatch();
 
 	const [laps, setLaps] = useState<Lap[]>([]);
 
-	const handleTimer = useCallback((): void => {
-		const timer = updateStopwatch({ hours, minutes, seconds, milliseconds });
-
-		setHours(timer.hours);
-		setMinutes(timer.minutes);
-		setSeconds(timer.seconds);
-		setMilliseconds(timer.milliseconds);
-	}, [hours, minutes, seconds, milliseconds]);
+	const background = useGetColor({ color: 'gray', type: 'background' });
 
 	const handleReset = useCallback((): void => {
-		setHours(0);
-		setMinutes(0);
-		setSeconds(0);
-		setMilliseconds(0);
-
+		onReset();
 		setLaps([]);
 	}, []);
 
-	const handleStartPause = useCallback((): void => setHasStarted.toggle(), []);
+	const handleStart = useCallback((): void => onStart(), []);
+
+	const handlePause = useCallback((): void => onStop(), []);
 
 	const handleSetLap = useCallback((): void => {
 		let updatedLaps: Lap[] = [...laps];
+
+		const { hours, minutes, seconds, milliseconds } = timer;
 
 		const lap: Lap = {
 			id: uuid(),
@@ -117,34 +108,42 @@ const Stopwatch: FC = () => {
 		}
 
 		setLaps(orderBy([...updatedLaps], 'index', ['desc']));
-	}, [laps, hours, minutes, seconds, milliseconds]);
-
-	useInterval(() => handleTimer(), hasStarted ? 10 : null);
+	}, [laps, timer]);
 
 	return (
-		<Center width='100%' height='100%' p={4}>
-			<VStack height='100%' alignItems='center' justifyContent='center' spacing={4}>
-				<VStack width='100%' alignItems='center' justifyContent='center' spacing={2}>
-					<Progress timer={{ hours, minutes, seconds, milliseconds }} />
+		<Container as={Center} width='100%' maxWidth='container.sm' height='100%' p={spacing}>
+			<VStack
+				width='100%'
+				height='100%'
+				position='relative'
+				alignItems='center'
+				justifyContent='center'
+				spacing={spacing}
+			>
+				<VStack
+					width='100%'
+					position='sticky'
+					top={78 + 32} // 78 Header height & 32 is padding top height
+					background={background}
+					alignItems='center'
+					justifyContent='center'
+					spacing={spacing}
+				>
+					<StopwatchProgress hasStarted={hasStarted} timer={timer} />
 
-					<Actions
+					<StopwatchControls
 						hasStarted={hasStarted}
-						timer={{ hours, minutes, seconds, milliseconds }}
+						timer={timer}
 						onReset={handleReset}
-						onStartPause={handleStartPause}
+						onStart={handleStart}
+						onPause={handlePause}
 						onSetLap={handleSetLap}
 					/>
 				</VStack>
 
-				<Collapse
-					in={hasStarted || !isEmpty(compact([hours, minutes, seconds, milliseconds]))}
-					unmountOnExit
-					style={{ width: '100%', height: 'auto', overflowY: 'auto' }}
-				>
-					<Laps laps={laps} timer={{ hours, minutes, seconds, milliseconds }} />
-				</Collapse>
+				<StopwatchLaps laps={laps} timer={timer} hasLaps={hasStarted || laps.length > 0} />
 			</VStack>
-		</Center>
+		</Container>
 	);
 };
 

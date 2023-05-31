@@ -1,7 +1,6 @@
 import { memoize } from 'lodash';
 
 import { Timer } from '../../../../common/types';
-import { getLabel } from '../../../../common/utils';
 
 export const updateStopwatch = memoize(({ hours, minutes, seconds, milliseconds }: Timer): Timer => {
 	let hr = hours;
@@ -27,8 +26,4 @@ export const updateStopwatch = memoize(({ hours, minutes, seconds, milliseconds 
 	}
 
 	return { hours: hr, minutes: min, seconds: sec, milliseconds: ms };
-});
-
-export const getStopwatchLabel = memoize(({ hours = 0, minutes = 0, seconds = 0, milliseconds = 0 }: Timer): string => {
-	return getLabel({ hours, minutes, seconds, milliseconds });
 });
