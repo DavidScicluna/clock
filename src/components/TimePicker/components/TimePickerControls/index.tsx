@@ -31,7 +31,7 @@ const TimePickerControls: FC<TimePickerControlsProps> = ({ timerType, mode, isDi
 									mode === 'add' ? `Add 1 ${fullType} (tooltip)` : `Subtract 1 ${fullType} (tooltip)`
 								}
 								label={mode === 'add' ? `Add 1 ${fullType}` : `Subtract 1 ${fullType}`}
-								placement='top'
+								placement={mode === 'add' ? 'top' : 'bottom'}
 								isOpen={!isDisabled && isHovering}
 								isDisabled={isDisabled}
 							>
@@ -63,7 +63,7 @@ const TimePickerControls: FC<TimePickerControlsProps> = ({ timerType, mode, isDi
 										: `Subtract 10 ${fullType}s (tooltip)`
 								}
 								label={mode === 'add' ? `Add 10 ${fullType}s` : `Subtract 10 ${fullType}s`}
-								placement='top'
+								placement={mode === 'add' ? 'top' : 'bottom'}
 								isOpen={!isDisabled && isHovering}
 								isDisabled={isDisabled}
 							>

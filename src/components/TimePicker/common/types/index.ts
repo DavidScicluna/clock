@@ -8,7 +8,6 @@ export type TimePickerOptions = Partial<Record<TimerTypeShort, TimePickerOption>
 export type TimePickerOnPickProps = { timerType: TimerTypeShort; value: number };
 
 export type TimePickerProps = Pick<IconButtonProps, 'size'> & {
-	// timer: Timer;
 	onPick: (props: TimePickerOnPickProps) => void;
 	options?: TimePickerOptions;
 };

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
-import { Space } from '@davidscicluna/component-library';
+import { Space, useGetColor, useGetThemeAppearance } from '@davidscicluna/component-library';
 
 import { HStack, VStack } from '@chakra-ui/react';
 
@@ -15,7 +15,12 @@ import TimePickerControls from './components/TimePickerControls';
 export const spacing: Space = 2;
 
 const TimePicker: FC<TimePickerProps> = ({ options, onPick, size }) => {
+	const { colorMode } = useGetThemeAppearance();
+
 	const [timerTypes, setTimerTypes] = useState<TimerTypesShort>([]);
+
+	const background = useGetColor({ color: 'gray', type: colorMode === 'light' ? 'lighter' : 'darker' });
+	const borderColor = useGetColor({ color: 'gray', type: 'divider' });
 
 	useEffect(() => {
 		const { h, m, s, ms } = options || {};
@@ -25,17 +30,15 @@ const TimePicker: FC<TimePickerProps> = ({ options, onPick, size }) => {
 	return (
 		<VStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={spacing}>
 			<HStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={0} px={spacing}>
-				{timerTypes.map((type) => {
-					const option = options ? options[type] : undefined;
+				{timerTypes.map((timerType) => {
+					const option = options ? options[timerType] : undefined;
 					return (
 						<TimePickerControls
-							key={type}
-							timerType={type}
+							key={timerType}
+							timerType={timerType}
 							mode='add'
 							isDisabled={option ? option.value >= option.max : false}
-							onPick={
-								option ? (count) => onPick({ timerType: type, value: option.value + count }) : undefined
-							}
+							onPick={option ? (count) => onPick({ timerType, value: option.value + count }) : undefined}
 							size={size}
 						/>
 					);
@@ -43,6 +46,11 @@ const TimePicker: FC<TimePickerProps> = ({ options, onPick, size }) => {
 			</HStack>
 
 			<TimePickerLabel
+				backgroundColor={background}
+				borderWidth='2px'
+				borderColor={borderColor}
+				borderStyle='solid'
+				borderRadius='base'
 				timerTypes={timerTypes}
 				timer={{
 					hours: options && options.h ? options.h.value : undefined,
@@ -50,20 +58,20 @@ const TimePicker: FC<TimePickerProps> = ({ options, onPick, size }) => {
 					seconds: options && options.s ? options.s.value : undefined,
 					milliseconds: options && options.ms ? options.ms.value : undefined
 				}}
+				spacing={spacing}
+				p={spacing}
 			/>
 
 			<HStack width='100%' alignItems='stretch' justifyContent='stretch' spacing={0} px={spacing}>
-				{timerTypes.map((type) => {
-					const option = options ? options[type] : undefined;
+				{timerTypes.map((timerType) => {
+					const option = options ? options[timerType] : undefined;
 					return (
 						<TimePickerControls
-							key={type}
-							timerType={type}
+							key={timerType}
+							timerType={timerType}
 							mode='subtract'
 							isDisabled={option ? option.value <= option.min : false}
-							onPick={
-								option ? (count) => onPick({ timerType: type, value: option.value - count }) : undefined
-							}
+							onPick={option ? (count) => onPick({ timerType, value: option.value - count }) : undefined}
 							size={size}
 						/>
 					);
