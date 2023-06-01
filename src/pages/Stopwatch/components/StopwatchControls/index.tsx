@@ -4,7 +4,7 @@ import { Button, HoverOverlay, Icon, IconButton, Tooltip } from '@davidscicluna/
 
 import { HStack } from '@chakra-ui/react';
 
-import { compact, isEmpty } from 'lodash';
+import { compact } from 'lodash';
 
 import { StopwatchControlsProps } from './common/types';
 
@@ -16,7 +16,7 @@ const StopwatchControls: FC<StopwatchControlsProps> = (props) => {
 		<HStack width='100%' spacing={0}>
 			<HoverOverlay>
 				{({ isHovering }) => {
-					const isDisabled = hasStarted || isEmpty(compact([hours, minutes, seconds, milliseconds]));
+					const isDisabled = hasStarted || compact([hours, minutes, seconds, milliseconds]).length === 0;
 					return (
 						<Tooltip
 							color='gray'
