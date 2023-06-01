@@ -15,7 +15,7 @@ const StopwatchLap: FC<StopwatchLapProps> = (props) => {
 		minutes = 0,
 		seconds = 0,
 		milliseconds = 0,
-		isCurrent = false,
+		isSubmitted = false,
 		status = 'default'
 	} = props;
 
@@ -45,7 +45,7 @@ const StopwatchLap: FC<StopwatchLapProps> = (props) => {
 	return (
 		<HStack width='100%' justifyContent='space-between'>
 			<Text align='left' color={color} fontSize='lg' fontWeight='medium'>
-				{`Lap ${isCurrent ? '#' : index}`}
+				{`Lap ${isSubmitted ? '#' : index}`}
 			</Text>
 
 			<Text align='left' color={color} fontSize='lg' fontWeight='medium' fontFamily='mono'>

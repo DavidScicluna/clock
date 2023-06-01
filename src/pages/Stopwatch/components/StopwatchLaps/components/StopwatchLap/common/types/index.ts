@@ -1,14 +1,5 @@
-import { Timer } from '../../../../../../../../common/types';
+import { StopwatchLap } from '../../../../../../common/types';
 
-type LapStatus = 'fastest' | 'slowest' | 'default';
-
-export type Lap = {
-	id: string;
-	index: number;
-	status: LapStatus;
-	isCurrent?: boolean;
-} & Timer;
-
-type Omitted = 'id';
-
-export type StopwatchLapProps = Omit<Lap, Omitted>;
+export type StopwatchLapProps = Omit<StopwatchLap, 'id'> & {
+	isSubmitted?: boolean;
+};
