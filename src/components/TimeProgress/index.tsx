@@ -8,30 +8,25 @@ import { TimeProgressProps } from './common/types';
 
 const { getColor } = utils;
 
-const TimeProgress: FC<TimeProgressProps> = (props) => {
+const TimeProgress: FC<TimeProgressProps> = ({ children, ...rest }) => {
 	const theme = useTheme();
 
 	const { color, colorMode } = useGetThemeAppearance();
-
-	const { children, ...rest } = props;
 
 	return (
 		<CircularProgress
 			{...rest}
 			capIsRound
 			color={getColor({ theme, colorMode, color, type: 'color' })}
-			thickness={theme.space['0.75']}
+			thickness={theme.space['0.5']}
 			trackColor={getColor({ theme, colorMode, type: 'divider' })}
-			size='358px'
 			sx={{
 				transitionDuration: theme.transition.duration.normal,
 				transitionTimingFunction: theme.transition.easing['ease-in-out']
 			}}
 		>
-			<CircularProgressLabel width='75%'>
-				<Center width='100%' height='100%'>
-					{children}
-				</Center>
+			<CircularProgressLabel as={Center} width='100%' height='100%'>
+				{children}
 			</CircularProgressLabel>
 		</CircularProgress>
 	);
