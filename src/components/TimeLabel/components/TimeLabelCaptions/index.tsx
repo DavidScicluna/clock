@@ -17,9 +17,9 @@ const TimeLabelCaptions: FC<TimeLabelCaptionsProps> = ({ timerTypes = [] }) => {
 			divider={<TimeLabelCaption sx={{ opacity: 0 }}>-</TimeLabelCaption>}
 			spacing={spacing}
 		>
-			{timerTypes.map((type) => (
-				<TimeLabelCaption key={type} width='100%'>
-					{formatTimerType({ timerType: type, format: 'short' })}
+			{timerTypes.map((timerType) => (
+				<TimeLabelCaption key={timerType} width='100%'>
+					{formatTimerType({ timerType: timerType, format: 'short' })}
 				</TimeLabelCaption>
 			))}
 		</HStack>
