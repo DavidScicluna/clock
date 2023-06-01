@@ -11,7 +11,7 @@ const StopwatchLaps: FC<StopwatchLapsProps> = ({ laps = [], timer, hasLaps = fal
 	return (
 		<Collapse in={hasLaps} style={{ width: '100%', height: '100%' }}>
 			<VStack width='100%' height='100%' divider={<Divider />}>
-				<StopwatchLap {...timer} index={laps.length + 1} isCurrent status='default' />
+				<StopwatchLap {...timer} index={laps.length + 1} isSubmitted status='default' />
 
 				{laps.map((lap) => (
 					<StopwatchLap {...lap} key={lap.id} />
