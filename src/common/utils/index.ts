@@ -1,6 +1,9 @@
-import { compact, memoize } from 'lodash';
+import dayjs from 'dayjs';
+import { compact } from 'lodash';
+import memoize from 'micro-memoize';
 
-import { Timer, TimerTypeFull, TimerTypeShort } from '../types';
+import {} from '../../store/slices/App/common/types';
+import { TimeFormat, Timer, TimerTypeFull, TimerTypeShort, WeekDayIndex } from '../types';
 
 type CheckTimerReturn = { [key in TimerTypeFull]: boolean };
 
@@ -82,10 +85,10 @@ export const getTimerValue = memoize((timer: Partial<Timer>, options?: Partial<T
 	Number(getLabel({ ...timer }, { ...options }).replaceAll(/:/g, ''))
 );
 
-type FormatTimerTypeProps = { type: TimerTypeShort; format: 'full' | 'short' };
+type FormatTimerTypeProps = { timerType: TimerTypeShort; format: 'full' | 'short' };
 
-export const formatTimerType = memoize(({ type, format }: FormatTimerTypeProps): string => {
-	switch (type) {
+export const formatTimerType = memoize(({ timerType, format }: FormatTimerTypeProps): string => {
+	switch (timerType) {
 		case 'h':
 			return format === 'full' ? 'Hour' : 'Hr';
 		case 'm':
@@ -94,5 +97,76 @@ export const formatTimerType = memoize(({ type, format }: FormatTimerTypeProps):
 			return format === 'full' ? 'Second' : 'Sec';
 		case 'ms':
 			return format === 'full' ? 'Millisecond' : 'Ms';
+	}
+});
+
+type FormatTimerNumberProps = { time: number; timerType: TimerTypeShort; timeFormat: TimeFormat };
+
+export const formatTimerNumber = memoize(({ time, timerType, timeFormat }: FormatTimerNumberProps): string => {
+	const date = dayjs(new Date()).set(timerType, time);
+
+	if (timerType === 'h') {
+		if (timeFormat === '12hr') {
+			return date.format('hh');
+		} else {
+			return date.format('HH');
+		}
+	} else {
+		switch (timerType) {
+			case 'm':
+				return date.format('mm');
+			case 's':
+				return date.format('ss');
+			case 'ms':
+				return date.format('SSS');
+		}
+	}
+});
+
+type GetWeekDayLabelProps = { day: WeekDayIndex; format: 'full' | 'short' | 'initial' };
+
+export const getWeekDayLabel = memoize(({ day, format }: GetWeekDayLabelProps): string => {
+	switch (day) {
+		case 0:
+			return format === 'full' ? 'Monday' : format === 'short' ? 'Mon' : 'M';
+		case 1:
+			return format === 'full' ? 'Tuesday' : format === 'short' ? 'Tue' : 'T';
+		case 2:
+			return format === 'full' ? 'Wednesday' : format === 'short' ? 'Wed' : 'W';
+		case 3:
+			return format === 'full' ? 'Thursday' : format === 'short' ? 'Thu' : 'T';
+		case 4:
+			return format === 'full' ? 'Friday' : format === 'short' ? 'Fri' : 'F';
+		case 5:
+			return format === 'full' ? 'Saturday' : format === 'short' ? 'Sat' : 'S';
+		case 6:
+			return format === 'full' ? 'Sunday' : format === 'short' ? 'Sun' : 'S';
+	}
+});
+
+type GetWeekDayValueProps = { day: WeekDayIndex };
+
+/**
+ * This method will convert our local WeekDayIndex value to the JS Date Day format
+ * Local Format: 0 - 6 | Mon - Sun
+ * JS Format: 0 - 6 | Sun - Sat
+ */
+
+export const getWeekDayValue = memoize(({ day }: GetWeekDayValueProps): WeekDayIndex => {
+	switch (day) {
+		case 0:
+			return 1;
+		case 1:
+			return 2;
+		case 2:
+			return 3;
+		case 3:
+			return 4;
+		case 4:
+			return 5;
+		case 5:
+			return 6;
+		case 6:
+			return 0;
 	}
 });
