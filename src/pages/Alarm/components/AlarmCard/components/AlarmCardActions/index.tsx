@@ -59,7 +59,7 @@ const AlarmCardActions: FC<AlarmCardActionsProps> = ({ alarm }) => {
 								<IconButton
 									aria-label={children}
 									color={isHovering ? 'red' : 'gray'}
-									onClick={() => onClick(alarm.id)}
+									onClick={() => onClick(alarm)}
 									size='xs'
 									variant='icon'
 								>

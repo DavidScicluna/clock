@@ -12,8 +12,7 @@ import {
 	CardTitle,
 	FormControl,
 	Switch,
-	useGetColor,
-	utils
+	useGetColor
 } from '@davidscicluna/component-library';
 
 import { HStack, Text, useToast } from '@chakra-ui/react';
@@ -29,8 +28,6 @@ import { useCheckAlarm } from './common/hooks';
 import { AlarmCardProps } from './common/types';
 import AlarmCardActions from './components/AlarmCardActions';
 import AlarmCardRepeat from './components/AlarmCardRepeat';
-
-const { convertDurationToMS } = utils;
 
 const AlarmCard: FC<AlarmCardProps> = (props) => {
 	const toast = useToast();
@@ -74,7 +71,7 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 		if (!toast.isActive(toastID)) {
 			toast({
 				id: toastID,
-				duration: convertDurationToMS(),
+				duration: null,
 				position: 'top',
 				render: () => (
 					<Alert
