@@ -4,12 +4,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { sample } from 'lodash';
 
 import colors from '../../../common/data/colors';
+import { timeFormat as defaultTimeFormat } from '../../../common/data/props';
+import { TimeFormat } from '../../../common/types';
 
 import { AppStateProps, AppTheme } from './common/types';
 
 const { defaultColor, defaultColorMode } = defaults.props;
 
 const initialState: AppStateProps = {
+	data: {
+		timeFormat: defaultTimeFormat
+	},
 	ui: {
 		theme: {
 			color: sample(colors) || defaultColor,
@@ -22,6 +27,9 @@ const appSlice = createSlice({
 	name: 'app',
 	initialState: { ...initialState },
 	reducers: {
+		setAppTimeFormat: (state: AppStateProps, action: PayloadAction<TimeFormat>) => {
+			state.data.timeFormat = action.payload;
+		},
 		setAppColor: (state: AppStateProps, action: PayloadAction<AppColor>) => {
 			state.ui.theme.color = action.payload;
 		},
@@ -34,6 +42,6 @@ const appSlice = createSlice({
 	}
 });
 
-export const { setAppColor, setAppColorMode, setAppTheme } = appSlice.actions;
+export const { setAppTimeFormat, setAppColor, setAppColorMode, setAppTheme } = appSlice.actions;
 
 export default appSlice.reducer;
