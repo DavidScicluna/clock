@@ -49,7 +49,7 @@ const AlarmsGrid: FC = () => {
 
 	return (
 		<Tabs width='100%' activeTab={activeTabDebounced} onChange={({ index }) => setActiveTab(index)}>
-			<VStack width='100%' spacing={spacing * 2}>
+			<VStack width='100%' spacing={[spacing, spacing * 2]}>
 				<TabList
 					tabs={alarmGroupsDebounced.map(({ label, alarms = [] }, index) => ({
 						label,
@@ -71,7 +71,7 @@ const AlarmsGrid: FC = () => {
 				/>
 				<TabPanels>
 					{alarmGroupsDebounced.map(({ id, alarms = [] }) => (
-						<SimpleGrid key={id} width='100%' columns={[1, 1, 2, 2, 3]} spacing={2}>
+						<SimpleGrid key={id} width='100%' columns={[1, 1, 2, 2, 3]} spacing={[spacing, spacing * 2]}>
 							{alarms.map((alarm) => (
 								<AlarmCard key={alarm.id} alarm={alarm} />
 							))}
