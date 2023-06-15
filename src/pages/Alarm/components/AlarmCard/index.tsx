@@ -26,6 +26,7 @@ import { setAlarm } from '../../../../store/slices/Alarms';
 
 import { useCheckAlarm } from './common/hooks';
 import { AlarmCardProps } from './common/types';
+import { getAlarmToastID } from './common/utils';
 import AlarmCardActions from './components/AlarmCardActions';
 import AlarmCardRepeat from './components/AlarmCardRepeat';
 
@@ -42,19 +43,20 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 
 	const hasCompleted = useCheckAlarm(alarm);
 
-	const handleCloseToast = (toastID: string): void => {
+	const handleCloseToast = (): void => {
+		const toastID = getAlarmToastID(id);
 		toast.close(toastID);
 	};
 
-	const handleStopAlarm = (isChecked: boolean, toastID?: string): void => {
-		dispatch(setAlarm({ ...alarm, isActive: isChecked }));
-
-		if (toastID) {
-			handleCloseToast(toastID);
+	const handleToastStopAlarm = (): void => {
+		if (repeat.length === 0) {
+			dispatch(setAlarm({ ...alarm, isActive: false }));
 		}
+
+		handleCloseToast();
 	};
 
-	const handleAlarmSnooze = (toastID: string): void => {
+	const handleToastAlarmSnooze = (): void => {
 		const { h, m } = time;
 		const date = dayjs(new Date())
 			.set('hour', h)
@@ -62,11 +64,11 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 
 		dispatch(setAlarm({ ...alarm, time: { h: date.hour(), m: date.minute() }, isActive: true }));
 
-		handleCloseToast(toastID);
+		handleCloseToast();
 	};
 
 	const handleAlert = (): void => {
-		const toastID = `ds-clock-alarm-${id}-toast`;
+		const toastID = getAlarmToastID(id);
 
 		if (!toast.isActive(toastID)) {
 			toast({
@@ -83,11 +85,11 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 						]).join(' or ')}`}
 						actions={
 							<HStack>
-								<Button onClick={() => handleStopAlarm(false, toastID)} size='xs' variant='outlined'>
+								<Button onClick={() => handleToastStopAlarm()} size='xs' variant='outlined'>
 									Stop
 								</Button>
 								{hasSnooze ? (
-									<Button onClick={() => handleAlarmSnooze(toastID)} size='xs' variant='contained'>
+									<Button onClick={() => handleToastAlarmSnooze()} size='xs' variant='contained'>
 										Snooze
 									</Button>
 								) : null}
@@ -116,7 +118,7 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 						<FormControl>
 							<Switch
 								isChecked={isActive}
-								onChange={(isChecked) => handleStopAlarm(isChecked)}
+								onChange={(isChecked) => dispatch(setAlarm({ ...alarm, isActive: isChecked }))}
 								size='sm'
 							/>
 						</FormControl>
