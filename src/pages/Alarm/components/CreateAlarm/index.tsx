@@ -214,7 +214,9 @@ const CreateAlarm: FC<CreateAlarmProps> = ({ renderAction }) => {
 						// 		})} by Release Date, Genres, Certifications, Rating, Number of Ratings, Runtime & by Keywords.`}
 						// 	</Text>
 						// )}
-						renderCancel={(props) => <CloseIconButton {...omit(props, ['icon', 'category'])} />}
+						renderCancel={(props) => (
+							<CloseIconButton {...omit(props, ['icon', 'category'])} hasTooltip={false} />
+						)}
 					/>
 					<ModalBody>
 						<Stepper

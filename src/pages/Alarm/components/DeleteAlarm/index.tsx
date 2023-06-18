@@ -71,12 +71,14 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 							label !== 'Alarm' ? `${label} Alarm` : label
 						}"`}
 						actions={
-							<Button onClick={() => handleUndoDeletion(alarm)} size='xs'>
+							<Button onClick={() => handleUndoDeletion(alarm)} size='xs' variant='text'>
 								Undo
 							</Button>
 						}
 						onClose={() => toast.close(toastID)}
-						renderClose={(props) => <CloseIconButton {...omit(props, ['icon', 'category'])} />}
+						renderClose={(props) => (
+							<CloseIconButton {...omit(props, ['icon', 'category'])} hasTooltip={false} />
+						)}
 						status='success'
 					/>
 				)
@@ -98,7 +100,9 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 						label='Deletion Failed'
 						description='Failed to delete the selected alarm'
 						onClose={() => toast.close(toastID)}
-						renderClose={(props) => <CloseIconButton {...omit(props, ['icon', 'category'])} />}
+						renderClose={(props) => (
+							<CloseIconButton {...omit(props, ['icon', 'category'])} hasTooltip={false} />
+						)}
 						status='error'
 					/>
 				)
@@ -140,7 +144,7 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 
 			<ConfirmModal
 				color='red'
-				renderCancel={(props) => <CloseIconButton {...omit(props, ['icon', 'category'])} />}
+				renderCancel={(props) => <CloseIconButton {...omit(props, ['icon', 'category'])} hasTooltip={false} />}
 				isOpen={isDeleteAlarmOpen}
 				onClose={handleClose}
 			>
