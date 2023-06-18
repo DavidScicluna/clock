@@ -11,6 +11,7 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalStack,
+	Space,
 	TabList,
 	TabPanels,
 	Tabs,
@@ -23,10 +24,9 @@ import { Center, Text, useDisclosure, VStack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { omit } from 'lodash';
 
-import { useSelector } from '../../../../common/hooks';
+import { useSelector, useSpacing } from '../../../../common/hooks';
 import { setAlarms } from '../../../../store/slices/Alarms';
 import { Alarm } from '../../../../store/slices/Alarms/common/types';
-import { spacing } from '../..';
 
 import { EditAlarmDetailsForm, EditAlarmProps, EditAlarmTimeForm } from './common/types';
 import { getDetailsFormDefaultValues, getTimerFormDefaultValues } from './common/utils';
@@ -66,6 +66,8 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 		reset: resetDetailsForm,
 		handleSubmit: handleSubmitDetailsForm
 	} = detailsForm;
+
+	const spacing = useSpacing();
 
 	const handleResetTimerForm = (alarm: Alarm): void => {
 		const { time } = getTimerFormDefaultValues(alarm);
@@ -152,7 +154,7 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 						<Tabs
 							width='100%'
 							position='relative'
-							top={`-${theme.space[spacing]}`}
+							top={`-${theme.space[spacing as Space]}`}
 							activeTab={activeTabDebounced}
 							isConsecutively
 							isFitted
@@ -169,7 +171,7 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 										}
 									]}
 								/>
-								<Center width='100%' mt={spacing * 2}>
+								<Center width='100%' mt={spacing}>
 									<TabPanels>
 										<EditAlarmTimeTab {...timeForm} />
 										<EditAlarmDetailsTab {...detailsForm} />

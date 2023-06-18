@@ -1,19 +1,19 @@
 import { FC } from 'react';
 
-import { Divider, Space, StateOverlay } from '@davidscicluna/component-library';
+import { Divider, StateOverlay } from '@davidscicluna/component-library';
 
 import { VStack } from '@chakra-ui/react';
 
-import { useSelector } from '../../common/hooks';
+import { useSelector, useSpacing } from '../../common/hooks';
 
 import AlarmsGrid from './components/AlarmsGrid';
 import AlarmsHeader from './components/AlarmsHeader';
 import EmptyAlarm from './components/EmptyAlarm';
 
-export const spacing: Space = 2;
-
 const Alarm: FC = () => {
 	const alarms = useSelector((state) => state.alarms.data.alarms);
+
+	const spacing = useSpacing();
 
 	return (
 		<VStack
@@ -21,7 +21,7 @@ const Alarm: FC = () => {
 			minHeight='100%'
 			divider={alarms.length === 0 ? <Divider /> : undefined}
 			spacing={0}
-			p={[spacing, spacing * 2]}
+			p={spacing}
 		>
 			<AlarmsHeader />
 

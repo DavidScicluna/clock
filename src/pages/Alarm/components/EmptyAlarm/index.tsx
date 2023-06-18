@@ -17,8 +17,8 @@ import { Center, useMediaQuery } from '@chakra-ui/react';
 
 import { upperCase } from 'lodash';
 
-import { spacing } from '../..';
 import CreateAlarmButton from '../CreateAlarmButton';
+import { useSpacing } from '../../../../common/hooks';
 
 const EmptyAlarm: FC = () => {
 	const theme = useTheme();
@@ -26,6 +26,8 @@ const EmptyAlarm: FC = () => {
 	const [isSm] = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
 
 	const borderColor = useGetColor({ color: 'gray', type: 'divider' });
+
+	const spacing = useSpacing();
 
 	return (
 		<Center width='100%' height='100%' pt={spacing}>

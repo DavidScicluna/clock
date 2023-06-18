@@ -13,8 +13,8 @@ import {
 
 import { SimpleGrid, VStack } from '@chakra-ui/react';
 
-import { useSelector } from '../../../../common/hooks';
-import { spacing } from '../..';
+import { useSelector, useSpacing } from '../../../../common/hooks';
+
 import AlarmCard from '../AlarmCard';
 
 import { AlarmGroup, AlarmGroups } from './common/types';
@@ -30,6 +30,8 @@ const AlarmsGrid: FC = () => {
 
 	const [activeTab, setActiveTab] = useState<number>(0);
 	const activeTabDebounced = useDebounce<number>(activeTab);
+
+	const spacing = useSpacing();
 
 	const handleAlarmGroups = (): void => {
 		const alarmGroups: AlarmGroups = getGroups(alarms);
@@ -49,7 +51,7 @@ const AlarmsGrid: FC = () => {
 
 	return (
 		<Tabs width='100%' activeTab={activeTabDebounced} onChange={({ index }) => setActiveTab(index)}>
-			<VStack width='100%' spacing={[spacing, spacing * 2]}>
+			<VStack width='100%' spacing={spacing}>
 				<TabList
 					tabs={alarmGroupsDebounced.map(({ label, alarms = [] }, index) => ({
 						label,
@@ -71,7 +73,7 @@ const AlarmsGrid: FC = () => {
 				/>
 				<TabPanels>
 					{alarmGroupsDebounced.map(({ id, alarms = [] }) => (
-						<SimpleGrid key={id} width='100%' columns={[1, 1, 2, 2, 3]} spacing={[spacing, spacing * 2]}>
+						<SimpleGrid key={id} width='100%' columns={[1, 1, 2, 2, 3]} spacing={spacing}>
 							{alarms.map((alarm) => (
 								<AlarmCard key={alarm.id} alarm={alarm} />
 							))}

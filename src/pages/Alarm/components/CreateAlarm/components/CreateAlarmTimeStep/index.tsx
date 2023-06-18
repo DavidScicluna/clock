@@ -20,7 +20,7 @@ import {
 import { Text, useMediaQuery, VStack } from '@chakra-ui/react';
 
 import TimePicker from '../../../../../../components/TimePicker';
-import { spacing } from '../../../..';
+import useSpacing from '../../../../../../common/hooks/useSpacing';
 import steps from '../../common/data/steps';
 
 import { CreateAlarmTimeStepProps } from './common/types';
@@ -32,8 +32,10 @@ const CreateAlarmTimeStep: FC<CreateAlarmTimeStepProps> = ({ control, setValue }
 
 	const step = useConst<Step>(steps[0]);
 
+	const spacing = useSpacing();
+
 	return (
-		<VStack width='100%' divider={<Divider />} spacing={spacing * 2}>
+		<VStack width='100%' divider={<Divider />} spacing={spacing}>
 			<Headline
 				// renderCaption={}
 				renderTitle={(props) => <Text {...props}>{step.title}</Text>}

@@ -4,8 +4,8 @@ import { ButtonIcon, useTheme } from '@davidscicluna/component-library';
 
 import { HStack, useMediaQuery } from '@chakra-ui/react';
 
-import { useSelector } from '../../../../common/hooks';
-import { spacing } from '../..';
+import { useSelector, useSpacing } from '../../../../common/hooks';
+
 import ClearAlarmsButton from '../ClearAlarmsButton';
 import ClearAlarmsIconButton from '../ClearAlarmsIconButton';
 import CreateAlarmButton from '../CreateAlarmButton';
@@ -18,6 +18,8 @@ const AlarmsActions: FC = () => {
 	const [isMd] = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
 
 	const alarms = useSelector((state) => state.alarms.data.alarms);
+
+	const spacing = useSpacing();
 
 	return (
 		<HStack width={!isSm && isMd ? '100%' : 'auto'} spacing={spacing}>

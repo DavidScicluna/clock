@@ -21,10 +21,10 @@ import { useDisclosure, useToast } from '@chakra-ui/react';
 
 import { omit } from 'lodash';
 
+import { defaultSpacing as spacing } from '../../../../common/hooks/useSpacing';
 import store from '../../../../store';
 import { setAlarms } from '../../../../store/slices/Alarms';
 import { Alarms } from '../../../../store/slices/Alarms/common/types';
-import { spacing } from '../..';
 
 import { ClearAlarmsProps } from './common/types';
 import { getClearAlarmsToastID } from './common/utils';
@@ -123,7 +123,7 @@ const ClearAlarms: FC<ClearAlarmsProps> = ({ renderAction }) => {
 				isOpen={isClearAlarmsOpen}
 				onClose={onClearAlarmsClose}
 			>
-				<ConfirmModalStack spacing={(spacing * 2) as Space} p={spacing * 2}>
+				<ConfirmModalStack spacing={spacing as Space} p={spacing}>
 					<ConfirmModalIcon
 						width='auto'
 						height='auto'

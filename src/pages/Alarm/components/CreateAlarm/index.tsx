@@ -12,6 +12,7 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalStack,
+	Space,
 	StepList,
 	StepPanels,
 	Stepper,
@@ -28,9 +29,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { isEmpty, isNil, omit, reverse } from 'lodash';
 import { v4 as uuid } from 'uuid';
 
-import { useSelector } from '../../../../common/hooks';
+import { useSelector, useSpacing } from '../../../../common/hooks';
 import { setAlarms } from '../../../../store/slices/Alarms';
-import { spacing } from '../..';
 
 import defaultSteps from './common/data/steps';
 import { CreateAlarmDetailsForm, CreateAlarmProps, CreateAlarmTimeForm } from './common/types';
@@ -91,6 +91,8 @@ const CreateAlarm: FC<CreateAlarmProps> = ({ renderAction }) => {
 		isValid: isDetailsFormValid,
 		errors: detailsFormErrors
 	} = useFormState({ control: controlDetailsForm });
+
+	const spacing = useSpacing();
 
 	const handleStepStatus = ({ index }: StepperOnChangeProps): StepStatus => {
 		switch (index) {
@@ -222,7 +224,7 @@ const CreateAlarm: FC<CreateAlarmProps> = ({ renderAction }) => {
 						<Stepper
 							width='100%'
 							position='relative'
-							top={`-${theme.space[spacing]}`}
+							top={`-${theme.space[spacing as Space]}`}
 							activeStep={activeStepDebounced}
 							totalSteps={steps.length}
 							isConsecutively
@@ -231,7 +233,7 @@ const CreateAlarm: FC<CreateAlarmProps> = ({ renderAction }) => {
 						>
 							<VStack width='100%' divider={<Divider />} spacing={0}>
 								<StepList steps={stepsDebounced} />
-								<Center width='100%' mt={spacing * 2}>
+								<Center width='100%' mt={spacing}>
 									<StepPanels>
 										<CreateAlarmTimeStep {...timeForm} />
 										<CreateAlarmDetailsStep {...detailsForm} />

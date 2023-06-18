@@ -6,17 +6,19 @@ import { Card, CardBody, CardStack, Divider, Headline, useTheme } from '@davidsc
 import { Text, useMediaQuery, VStack } from '@chakra-ui/react';
 
 import TimePicker from '../../../../../../components/TimePicker';
-import { spacing } from '../../../..';
 
 import { EditAlarmTimeTabProps } from './common/types';
+import useSpacing from '../../../../../../common/hooks/useSpacing';
 
 const EditAlarmTimeTab: FC<EditAlarmTimeTabProps> = ({ control, setValue }) => {
 	const theme = useTheme();
 
 	const [isSm] = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
+	const spacing = useSpacing();
+
 	return (
-		<VStack width='100%' divider={<Divider />} spacing={spacing * 2}>
+		<VStack width='100%' divider={<Divider />} spacing={spacing}>
 			<Headline
 				// renderCaption={}
 				renderTitle={(props) => <Text {...props}>Time</Text>}
