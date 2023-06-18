@@ -1,7 +1,11 @@
+import { AlertStatus } from '@davidscicluna/component-library';
+
 import memoize from 'micro-memoize';
 
 import { Alarm } from '../../../../../../store/slices/Alarms/common/types';
 
-export const getAlarmToastID = memoize((alarmID: Alarm['id']): string => {
-	return `ds-clock-alarm-${alarmID}-toast`;
+type GetAlarmToastIDProps = { alarmID: Alarm['id']; type: AlertStatus };
+
+export const getAlarmToastID = memoize(({ alarmID, type }: GetAlarmToastIDProps): string => {
+	return `ds-clock-alarm-${alarmID}-${type}-toast`;
 });

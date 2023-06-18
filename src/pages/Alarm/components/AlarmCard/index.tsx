@@ -44,7 +44,7 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 	const hasCompleted = useCheckAlarm(alarm);
 
 	const handleCloseToast = (): void => {
-		const toastID = getAlarmToastID(id);
+		const toastID = getAlarmToastID({ alarmID: id, type: 'success' });
 		toast.close(toastID);
 	};
 
@@ -68,7 +68,7 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 	};
 
 	const handleAlert = (): void => {
-		const toastID = getAlarmToastID(id);
+		const toastID = getAlarmToastID({ alarmID: id, type: 'success' });
 
 		if (!toast.isActive(toastID)) {
 			toast({
@@ -85,7 +85,11 @@ const AlarmCard: FC<AlarmCardProps> = (props) => {
 						]).join(' or ')}`}
 						actions={
 							<HStack>
-								<Button onClick={() => handleToastStopAlarm()} size='xs' variant='outlined'>
+								<Button
+									onClick={() => handleToastStopAlarm()}
+									size='xs'
+									variant={hasSnooze ? 'outlined' : 'contained'}
+								>
 									Stop
 								</Button>
 								{hasSnooze ? (
