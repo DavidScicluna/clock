@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import { compact } from 'lodash';
 import memoize from 'micro-memoize';
 
-import {} from '../../store/slices/App/common/types';
 import { TimeFormat, Timer, TimerTypeFull, TimerTypeShort, WeekDayIndex } from '../types';
 
 type CheckTimerReturn = { [key in TimerTypeFull]: boolean };
@@ -89,11 +88,11 @@ type FormatTimerTypeProps = { timerType: TimerTypeShort; format: 'full' | 'short
 
 export const formatTimerType = memoize(({ timerType, format }: FormatTimerTypeProps): string => {
 	switch (timerType) {
-		case 'h':
+		case 'hr':
 			return format === 'full' ? 'Hour' : 'Hr';
-		case 'm':
+		case 'min':
 			return format === 'full' ? 'Minute' : 'Min';
-		case 's':
+		case 'sec':
 			return format === 'full' ? 'Second' : 'Sec';
 		case 'ms':
 			return format === 'full' ? 'Millisecond' : 'Ms';
@@ -103,9 +102,12 @@ export const formatTimerType = memoize(({ timerType, format }: FormatTimerTypePr
 type FormatTimerNumberProps = { time: number; timerType: TimerTypeShort; timeFormat: TimeFormat };
 
 export const formatTimerNumber = memoize(({ time, timerType, timeFormat }: FormatTimerNumberProps): string => {
-	const date = dayjs(new Date()).set(timerType, time);
+	const date = dayjs(new Date()).set(
+		timerType === 'hr' ? 'hour' : timerType === 'min' ? 'minute' : timerType === 'sec' ? 'second' : 'millisecond',
+		time
+	);
 
-	if (timerType === 'h') {
+	if (timerType === 'hr') {
 		if (timeFormat === '12hr') {
 			return date.format('hh');
 		} else {
@@ -113,9 +115,9 @@ export const formatTimerNumber = memoize(({ time, timerType, timeFormat }: Forma
 		}
 	} else {
 		switch (timerType) {
-			case 'm':
+			case 'min':
 				return date.format('mm');
-			case 's':
+			case 'sec':
 				return date.format('ss');
 			case 'ms':
 				return date.format('SSS');

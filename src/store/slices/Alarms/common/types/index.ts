@@ -2,7 +2,7 @@ import { PickFrom } from '@davidscicluna/component-library';
 
 import { TimerTypeShort, WeekDayIndex } from '../../../../../common/types';
 
-export type AlarmTime = Record<PickFrom<TimerTypeShort, 'h' | 'm'>, number>;
+export type AlarmTime = Record<PickFrom<TimerTypeShort, 'hr' | 'min'>, number>;
 export type AlarmRepeat = WeekDayIndex[]; // Mon - Sun | 0 - 6
 
 export type Alarm = {

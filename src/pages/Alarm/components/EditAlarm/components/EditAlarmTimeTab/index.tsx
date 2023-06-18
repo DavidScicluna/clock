@@ -65,8 +65,8 @@ const EditAlarmTimeTab: FC<EditAlarmTimeTabProps> = ({ control, setValue }) => {
 										setValue(name, { ...value, [timerType]: v }, { shouldDirty: true })
 									}
 									options={{
-										h: { min: 0, max: 23, value: value.h },
-										m: { min: 0, max: 59, value: value.m }
+										hr: { min: 0, max: 23, value: value.hr },
+										min: { min: 0, max: 59, value: value.min }
 									}}
 									size={isSm ? 'md' : 'xl'}
 								/>

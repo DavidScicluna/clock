@@ -1,4 +1,4 @@
-export type TimerTypeShort = 'h' | 'm' | 's' | 'ms';
+export type TimerTypeShort = 'hr' | 'min' | 'sec' | 'ms';
 export type TimerTypesShort = TimerTypeShort[];
 
 export type TimerTypeFull = 'hours' | 'minutes' | 'seconds' | 'milliseconds';
