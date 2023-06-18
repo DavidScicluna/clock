@@ -43,7 +43,9 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 	const [alarm, setAlarm] = useState<Alarm>();
 
 	const handleUndoDeletion = (alarm: Alarm): void => {
-		toast.close(getDeleteAlarmToastID(alarm.id));
+		const { id } = alarm;
+
+		toast.close(getDeleteAlarmToastID({ alarmID: id, type: 'success' }));
 
 		const alarms = store.getState().alarms.data.alarms;
 		const index = alarms.indexOf(alarm);
@@ -54,7 +56,7 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 	const handleSuccessToast = (alarm: Alarm): void => {
 		const { id, label } = alarm;
 
-		const toastID = getDeleteAlarmToastID(id);
+		const toastID = getDeleteAlarmToastID({ alarmID: id, type: 'success' });
 
 		if (!toast.isActive(toastID)) {
 			toast({
@@ -83,7 +85,7 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 	};
 
 	const handleErrorToast = (): void => {
-		const toastID = getDeleteAlarmToastID();
+		const toastID = getDeleteAlarmToastID({ type: 'error' });
 
 		if (!toast.isActive(toastID)) {
 			toast({
@@ -94,7 +96,7 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 					<Alert
 						duration={15}
 						label='Deletion Failed'
-						description='Failed to delete the selected alarm.'
+						description='Failed to delete the selected alarm'
 						onClose={() => toast.close(toastID)}
 						renderClose={(props) => <CloseIconButton {...omit(props, ['icon', 'category'])} />}
 						status='error'
