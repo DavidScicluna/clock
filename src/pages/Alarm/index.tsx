@@ -1,23 +1,18 @@
 import { FC } from 'react';
 
-import { ButtonIcon, Divider, Headline, Space, StateOverlay, useTheme } from '@davidscicluna/component-library';
+import { Divider, Space, StateOverlay } from '@davidscicluna/component-library';
 
-import { Text, useMediaQuery, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 
 import { useSelector } from '../../common/hooks';
 
 import AlarmsGrid from './components/AlarmsGrid';
-import CreateAlarmButton from './components/CreateAlarmButton';
-import CreateAlarmIconButton from './components/CreateAlarmIconButton';
+import AlarmsHeader from './components/AlarmsHeader';
 import EmptyAlarm from './components/EmptyAlarm';
 
 export const spacing: Space = 2;
 
 const Alarm: FC = () => {
-	const theme = useTheme();
-
-	const [isSm] = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-
 	const alarms = useSelector((state) => state.alarms.data.alarms);
 
 	return (
@@ -28,18 +23,7 @@ const Alarm: FC = () => {
 			spacing={0}
 			p={[spacing, spacing * 2]}
 		>
-			<Headline
-				renderTitle={(props) => <Text {...props}>Alarms</Text>}
-				// renderSubtitle={() => ()}
-				renderRight={() =>
-					isSm ? (
-						<CreateAlarmIconButton size='sm' />
-					) : (
-						<CreateAlarmButton renderLeft={(props) => <ButtonIcon {...props} icon='add' />} size='sm' />
-					)
-				}
-				pb={[spacing, spacing * 2]}
-			/>
+			<AlarmsHeader />
 
 			<StateOverlay
 				width='100%'
