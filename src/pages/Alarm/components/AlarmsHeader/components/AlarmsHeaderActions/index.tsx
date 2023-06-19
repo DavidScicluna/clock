@@ -4,14 +4,13 @@ import { ButtonIcon, useTheme } from '@davidscicluna/component-library';
 
 import { HStack, useMediaQuery } from '@chakra-ui/react';
 
-import { useSelector, useSpacing } from '../../../../common/hooks';
+import { useSelector, useSpacing } from '../../../../../../common/hooks';
+import ClearAlarmsButton from '../../../ClearAlarmsButton';
+import ClearAlarmsIconButton from '../../../ClearAlarmsIconButton';
+import CreateAlarmButton from '../../../CreateAlarmButton';
+import CreateAlarmIconButton from '../../../CreateAlarmIconButton';
 
-import ClearAlarmsButton from '../ClearAlarmsButton';
-import ClearAlarmsIconButton from '../ClearAlarmsIconButton';
-import CreateAlarmButton from '../CreateAlarmButton';
-import CreateAlarmIconButton from '../CreateAlarmIconButton';
-
-const AlarmsActions: FC = () => {
+const AlarmsHeaderActions: FC = () => {
 	const theme = useTheme();
 
 	const [isSm] = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
@@ -48,4 +47,4 @@ const AlarmsActions: FC = () => {
 	);
 };
 
-export default AlarmsActions;
+export default AlarmsHeaderActions;

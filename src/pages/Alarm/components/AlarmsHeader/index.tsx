@@ -4,8 +4,9 @@ import { Headline, useTheme } from '@davidscicluna/component-library';
 
 import { Text, useMediaQuery, VStack } from '@chakra-ui/react';
 
-import AlarmsActions from '../AlarmsActions';
 import { useSpacing } from '../../../../common/hooks';
+
+import AlarmsHeaderActions from './components/AlarmsHeaderActions';
 
 const AlarmsHeader: FC = () => {
 	const theme = useTheme();
@@ -20,10 +21,10 @@ const AlarmsHeader: FC = () => {
 			<Headline
 				renderTitle={(props) => <Text {...props}>Alarms</Text>}
 				// renderSubtitle={() => ()}
-				renderRight={isSm || !isMd ? () => <AlarmsActions /> : undefined}
+				renderRight={isSm || !isMd ? () => <AlarmsHeaderActions /> : undefined}
 			/>
 
-			{!isSm && isMd ? <AlarmsActions /> : undefined}
+			{!isSm && isMd ? <AlarmsHeaderActions /> : undefined}
 		</VStack>
 	);
 };
