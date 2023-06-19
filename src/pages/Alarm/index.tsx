@@ -8,7 +8,7 @@ import { useSelector, useSpacing } from '../../common/hooks';
 
 import AlarmsGrid from './components/AlarmsGrid';
 import AlarmsHeader from './components/AlarmsHeader';
-import EmptyAlarm from './components/EmptyAlarm';
+import EmptyAlarms from './components/EmptyAlarms';
 
 const Alarm: FC = () => {
 	const alarms = useSelector((state) => state.alarms.data.alarms);
@@ -28,7 +28,7 @@ const Alarm: FC = () => {
 			<StateOverlay
 				width='100%'
 				height='100%'
-				renderEmpty={() => <EmptyAlarm />}
+				renderEmpty={() => <EmptyAlarms />}
 				renderContent={() => <AlarmsGrid />}
 				hasGlass={false}
 				hasContentAlwaysVisible={false}

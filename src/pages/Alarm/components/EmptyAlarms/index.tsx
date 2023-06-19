@@ -17,13 +17,15 @@ import { Center, useMediaQuery } from '@chakra-ui/react';
 
 import { upperCase } from 'lodash';
 
+import { useGetTab, useSpacing } from '../../../../common/hooks';
 import CreateAlarmButton from '../CreateAlarmButton';
-import { useSpacing } from '../../../../common/hooks';
 
-const EmptyAlarm: FC = () => {
+const EmptyAlarms: FC = () => {
 	const theme = useTheme();
 
 	const [isSm] = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
+
+	const tab = useGetTab('alarm');
 
 	const borderColor = useGetColor({ color: 'gray', type: 'divider' });
 
@@ -46,8 +48,8 @@ const EmptyAlarm: FC = () => {
 							height='auto'
 							fontSize={theme.fontSizes['6xl']}
 							borderRadius='full'
-							icon='alarm'
-							category='outlined'
+							icon={tab?.icon || 'alarm'}
+							category={tab?.category || 'outlined'}
 							variant='contained'
 							p={2}
 						/>
@@ -77,4 +79,4 @@ const EmptyAlarm: FC = () => {
 	);
 };
 
-export default EmptyAlarm;
+export default EmptyAlarms;
