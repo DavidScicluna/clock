@@ -19,8 +19,8 @@ import {
 
 import { Text, useMediaQuery, VStack } from '@chakra-ui/react';
 
-import TimePicker from '../../../../../../components/TimePicker';
 import useSpacing from '../../../../../../common/hooks/useSpacing';
+import TimePicker from '../../../../../../components/TimePicker';
 import steps from '../../common/data/steps';
 
 import { CreateAlarmTimeStepProps } from './common/types';

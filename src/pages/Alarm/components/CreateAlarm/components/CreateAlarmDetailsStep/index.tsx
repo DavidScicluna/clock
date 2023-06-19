@@ -4,13 +4,13 @@ import { Divider, Headline, Step, useConst } from '@davidscicluna/component-libr
 
 import { Text, VStack } from '@chakra-ui/react';
 
+import { useSpacing } from '../../../../../../common/hooks';
 import steps from '../../common/data/steps';
 
 import { CreateAlarmDetailsStepProps } from './common/types';
 import CreateAlarmLabel from './components/CreateAlarmLabel';
 import CreateAlarmRepeat from './components/CreateAlarmRepeat';
 import CreateAlarmSnooze from './components/CreateAlarmSnooze';
-import { useSpacing } from '../../../../../../common/hooks';
 
 const CreateAlarmDetailsStep: FC<CreateAlarmDetailsStepProps> = (props) => {
 	const step = useConst<Step>(steps[1]);

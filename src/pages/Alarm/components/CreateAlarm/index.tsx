@@ -12,7 +12,6 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalStack,
-	Space,
 	StepList,
 	StepPanels,
 	Stepper,
@@ -224,7 +223,7 @@ const CreateAlarm: FC<CreateAlarmProps> = ({ renderAction }) => {
 						<Stepper
 							width='100%'
 							position='relative'
-							top={`-${theme.space[spacing as Space]}`}
+							top={`-${theme.space[2]}`}
 							activeStep={activeStepDebounced}
 							totalSteps={steps.length}
 							isConsecutively
