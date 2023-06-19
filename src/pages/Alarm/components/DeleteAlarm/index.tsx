@@ -12,7 +12,6 @@ import {
 	ConfirmModalStack,
 	ConfirmModalSubtitle,
 	ConfirmModalTitle,
-	Space,
 	useTheme,
 	utils
 } from '@davidscicluna/component-library';
@@ -68,7 +67,7 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 						duration={15}
 						label='Deletion Successful'
 						description={`Successfully deleted the selected "${
-							label !== 'Alarm' ? `${label} Alarm` : label
+							!label.includes('Alarm') ? `${label} Alarm` : label
 						}"`}
 						actions={
 							<Button onClick={() => handleUndoDeletion(alarm)} size='xs' variant='text'>
