@@ -14,7 +14,6 @@ import {
 import { SimpleGrid, VStack } from '@chakra-ui/react';
 
 import { useSelector, useSpacing } from '../../../../common/hooks';
-
 import AlarmCard from '../AlarmCard';
 
 import { AlarmGroup, AlarmGroups } from './common/types';
