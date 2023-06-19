@@ -9,12 +9,14 @@ import { Alarm } from '../../../../../../store/slices/Alarms/common/types';
 
 const timeout = 1000;
 
-const getIntervalTimeout = ({ repeat = [], isActive }: Alarm): Nullable<number> => {
+type GetIntervalTimeoutProps = Alarm & { hasCompleted: boolean };
+
+const getIntervalTimeout = ({ repeat = [], isActive, hasCompleted }: GetIntervalTimeoutProps): Nullable<number> => {
 	if (repeat.length > 0) {
 		const hasRepeat = repeat.some((day) => getWeekDayValue({ day }) === (dayjs(new Date()).day() as WeekDayIndex));
-		return isActive && hasRepeat ? timeout : null;
+		return !hasCompleted && isActive && hasRepeat ? timeout : null;
 	} else {
-		return isActive ? timeout : null;
+		return !hasCompleted && isActive ? timeout : null;
 	}
 };
 
@@ -28,16 +30,16 @@ const useCheckAlarm = (alarm: Alarm): boolean => {
 		const hour = today.hour();
 		const minute = today.minute();
 
-		const { h, m } = time;
+		const { hr, min } = time;
 
-		if (h === hour && m === minute) {
+		if (hr === hour && min === minute) {
 			setHasCompleted.on();
 		} else {
 			setHasCompleted.off();
 		}
 	};
 
-	useInterval(() => (!hasCompleted ? handleCheckIsComplete() : undefined), getIntervalTimeout(alarm));
+	useInterval(() => handleCheckIsComplete(), getIntervalTimeout({ ...alarm, hasCompleted }));
 
 	return hasCompleted;
 };

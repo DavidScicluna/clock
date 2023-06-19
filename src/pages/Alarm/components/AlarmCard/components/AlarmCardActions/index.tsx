@@ -34,8 +34,8 @@ const AlarmCardActions: FC<AlarmCardActionsProps> = ({ alarm }) => {
 								<IconButton
 									aria-label={`${children}`}
 									color={isHovering ? color : 'gray'}
+									isCompact
 									onClick={() => onClick(alarm)}
-									size='xs'
 									variant='icon'
 								>
 									<IconButtonIcon icon='edit' category='outlined' />
@@ -59,8 +59,8 @@ const AlarmCardActions: FC<AlarmCardActionsProps> = ({ alarm }) => {
 								<IconButton
 									aria-label={children}
 									color={isHovering ? 'red' : 'gray'}
+									isCompact
 									onClick={() => onClick(alarm)}
-									size='xs'
 									variant='icon'
 								>
 									<IconButtonIcon icon='delete' category='outlined' />
