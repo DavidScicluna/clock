@@ -4,11 +4,12 @@ import { Divider, Headline } from '@davidscicluna/component-library';
 
 import { Text, VStack } from '@chakra-ui/react';
 
+import useSpacing from '../../../../../../common/hooks/useSpacing';
+
 import { EditAlarmDetailsTabProps } from './common/types';
 import EditAlarmLabel from './components/EditAlarmLabel';
 import EditAlarmRepeat from './components/EditAlarmRepeat';
 import EditAlarmSnooze from './components/EditAlarmSnooze';
-import useSpacing from '../../../../../../common/hooks/useSpacing';
 
 const EditAlarmDetailsTab: FC<EditAlarmDetailsTabProps> = (props) => {
 	const spacing = useSpacing();

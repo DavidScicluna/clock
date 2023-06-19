@@ -5,10 +5,10 @@ import { Card, CardBody, CardStack, Divider, Headline, useTheme } from '@davidsc
 
 import { Text, useMediaQuery, VStack } from '@chakra-ui/react';
 
+import useSpacing from '../../../../../../common/hooks/useSpacing';
 import TimePicker from '../../../../../../components/TimePicker';
 
 import { EditAlarmTimeTabProps } from './common/types';
-import useSpacing from '../../../../../../common/hooks/useSpacing';
 
 const EditAlarmTimeTab: FC<EditAlarmTimeTabProps> = ({ control, setValue }) => {
 	const theme = useTheme();

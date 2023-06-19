@@ -6,7 +6,7 @@ import { EditAlarmDetailsForm, EditAlarmTimeForm } from '../types';
 export const getTimerFormDefaultValues = (alarm?: Alarm): EditAlarmTimeForm => {
 	const today = dayjs(new Date());
 
-	const defaultValues: EditAlarmTimeForm = { time: { h: today.hour(), m: today.minute() } };
+	const defaultValues: EditAlarmTimeForm = { time: { hr: today.hour(), min: today.minute() } };
 
 	if (alarm) {
 		const { time } = alarm;
@@ -16,8 +16,8 @@ export const getTimerFormDefaultValues = (alarm?: Alarm): EditAlarmTimeForm => {
 	}
 };
 
-export const getDetailsFormDefaultValues = (alarm?: Alarm): EditAlarmDetailsForm => {
-	const defaultValues: EditAlarmDetailsForm = { label: 'Alarm', repeat: [], hasSnooze: true };
+export const getDetailsFormDefaultValues = (alarm?: Alarm, alarms = 0): EditAlarmDetailsForm => {
+	const defaultValues: EditAlarmDetailsForm = { label: `Alarm ${alarms + 1}`, repeat: [], hasSnooze: true };
 
 	if (alarm) {
 		const { label, repeat, hasSnooze } = alarm;

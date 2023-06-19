@@ -11,7 +11,6 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalStack,
-	Space,
 	TabList,
 	TabPanels,
 	Tabs,
@@ -50,13 +49,13 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 	const timeForm = useForm<EditAlarmTimeForm>({
 		mode: 'onBlur',
 		reValidateMode: 'onChange',
-		defaultValues: getTimerFormDefaultValues(),
+		defaultValues: getTimerFormDefaultValues(alarm),
 		resolver: zodResolver(timerFormSchema)
 	});
 	const detailsForm = useForm<EditAlarmDetailsForm>({
 		mode: 'onBlur',
 		reValidateMode: 'onChange',
-		defaultValues: getDetailsFormDefaultValues(),
+		defaultValues: getDetailsFormDefaultValues(alarm, alarms.length),
 		resolver: zodResolver(detailsFormSchema)
 	});
 
@@ -75,7 +74,7 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 	};
 
 	const handleResetDetailsForm = (alarm: Alarm): void => {
-		const { label, repeat, hasSnooze } = getDetailsFormDefaultValues(alarm);
+		const { label, repeat, hasSnooze } = getDetailsFormDefaultValues(alarm, alarms.length);
 		setDetailsFormValue('label', label, { shouldDirty: true });
 		setDetailsFormValue('repeat', repeat, { shouldDirty: true });
 		setDetailsFormValue('hasSnooze', hasSnooze, { shouldDirty: true });
@@ -95,7 +94,7 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 		onEditAlarmClose();
 
 		const { time } = getTimerFormDefaultValues(alarm);
-		const { label, repeat, hasSnooze } = getDetailsFormDefaultValues(alarm);
+		const { label, repeat, hasSnooze } = getDetailsFormDefaultValues(alarm, alarms.length);
 
 		resetTimeForm({ time });
 		resetDetailsForm({ label, repeat, hasSnooze });
@@ -138,14 +137,6 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 				>
 					<ModalHeader
 						renderTitle={(props) => <Text {...props}>Edit Alarm</Text>}
-						// renderSubtitle={(props) => (
-						// 	<Text {...props}>
-						// 		{`Filter ${formatMediaTypeLabel({
-						// 			type: 'multiple',
-						// 			mediaType
-						// 		})} by Release Date, Genres, Certifications, Rating, Number of Ratings, Runtime & by Keywords.`}
-						// 	</Text>
-						// )}
 						renderCancel={(props) => (
 							<CloseIconButton {...omit(props, ['icon', 'category'])} hasTooltip={false} />
 						)}
@@ -154,23 +145,14 @@ const EditAlarm: FC<EditAlarmProps> = ({ renderAction }) => {
 						<Tabs
 							width='100%'
 							position='relative'
-							top={`-${theme.space[spacing as Space]}`}
+							top={`-${theme.space[2]}`}
 							activeTab={activeTabDebounced}
 							isConsecutively
 							isFitted
 							onChange={({ index }) => setActiveTab(index)}
 						>
 							<VStack width='100%' spacing={0}>
-								<TabList
-									tabs={[
-										{
-											label: 'Time'
-										},
-										{
-											label: 'Details'
-										}
-									]}
-								/>
+								<TabList tabs={[{ label: 'Time' }, { label: 'Details' }]} />
 								<Center width='100%' mt={spacing}>
 									<TabPanels>
 										<EditAlarmTimeTab {...timeForm} />
