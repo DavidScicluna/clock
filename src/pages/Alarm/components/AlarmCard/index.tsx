@@ -20,8 +20,7 @@ import { HStack, useToast } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { capitalize, compact } from 'lodash';
 
-import { useGetTab, useSelector } from '../../../../common/hooks';
-import usePageTitleInterval from '../../../../common/hooks/useSetPageTitle';
+import { useGetTab, usePageTitleInterval, useSelector } from '../../../../common/hooks';
 import TimeLabel from '../../../../components/TimeLabel';
 import { setAlarm } from '../../../../store/slices/Alarms';
 

@@ -1,4 +1,5 @@
+import usePageTitleInterval from './usePageTitleInterval';
 import useSelector from './useSelectorTyped';
 import useSpacing from './useSpacing';
 
-export { useSelector, useSpacing };
+export { useGetTab, usePageTitleInterval, useSelector, useSpacing };
