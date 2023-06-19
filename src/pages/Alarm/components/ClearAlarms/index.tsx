@@ -123,7 +123,7 @@ const ClearAlarms: FC<ClearAlarmsProps> = ({ renderAction }) => {
 				isOpen={isClearAlarmsOpen}
 				onClose={onClearAlarmsClose}
 			>
-				<ConfirmModalStack spacing={spacing as Space} p={spacing}>
+				<ConfirmModalStack spacing={(spacing * 2) as Space} p={spacing * 2}>
 					<ConfirmModalIcon
 						width='auto'
 						height='auto'

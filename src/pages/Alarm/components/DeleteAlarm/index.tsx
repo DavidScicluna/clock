@@ -12,6 +12,7 @@ import {
 	ConfirmModalStack,
 	ConfirmModalSubtitle,
 	ConfirmModalTitle,
+	Space,
 	useTheme,
 	utils
 } from '@davidscicluna/component-library';
@@ -147,7 +148,7 @@ const DeleteAlarm: FC<DeleteAlarmProps> = ({ renderAction }) => {
 				isOpen={isDeleteAlarmOpen}
 				onClose={handleClose}
 			>
-				<ConfirmModalStack spacing={spacing} p={spacing}>
+				<ConfirmModalStack spacing={(spacing * 2) as Space} p={spacing * 2}>
 					<ConfirmModalIcon
 						width='auto'
 						height='auto'
