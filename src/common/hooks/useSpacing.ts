@@ -1,5 +1,6 @@
-import { useMediaQuery } from '@chakra-ui/react';
 import { Space, useTheme } from '@davidscicluna/component-library';
+
+import { useMediaQuery } from '@chakra-ui/react';
 
 export const defaultSpacing: Space = 2;
 
